@@ -1,0 +1,26 @@
+--CLIPBOARD STUFF
+vim.opt.clipboard = "unnamedplus"
+
+--INDENTATION STUFF
+vim.opt.autoindent = true
+
+--SEARCHING STUFF
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+
+--UI STUFF
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.titlestring = "%t"
+vim.opt.title = true
+vim.opt.relativenumber = true
+vim.opt.background = "dark"
+vim.opt.ruler = false
+
+--FOLDING STUFF
+vim.opt.foldmethod = "indent"
+
+--TEXT STUFF
+vim.opt.syntax = "on"
