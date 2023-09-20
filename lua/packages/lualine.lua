@@ -1,3 +1,4 @@
+
 return {
 	"nvim-lualine/lualine.nvim",
 	lazy = false,
@@ -43,7 +44,7 @@ return {
 		inactive_winbar = {},
 		extensions = {}
 	},
-	config = function(_, opts) 
+	config = function(_, opts)
 		require("lualine").setup(opts)
 	end
 }
