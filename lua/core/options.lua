@@ -5,7 +5,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.foldlevel = 20 
+vim.opt.foldlevel = 20
 
 --SEARCHING STUFF
 vim.opt.hlsearch = true
