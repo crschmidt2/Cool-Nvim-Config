@@ -9,19 +9,21 @@ return {
 			"vue",
 			"cpp",
 			"javascript",
-			"lua", 
+			"lua",
 			"json",
 			"vim",
 			"vimdoc",
 			"c_sharp",
+			"html",
+			"css",
 		},
-		highlight = { 
+		highlight = {
 			enable = true,
 			additional_vim_regex_highlighting = false,
 		},
 		indent = { enable = true },
 	},
-	config = function(_, opts) 
+	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)
 	end
 

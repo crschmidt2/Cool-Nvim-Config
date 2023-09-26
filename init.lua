@@ -25,8 +25,6 @@ vim.opt.rtp:prepend(lazypath)
 
 --Plugins Directory
 require("lazy").setup("packages")
-require("plugin-config.cmp")
 
 --LSP Directory
-require("lsp.lua")
 
