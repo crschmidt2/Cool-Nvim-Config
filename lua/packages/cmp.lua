@@ -9,6 +9,7 @@ return {
 		'hrsh7th/cmp-cmdline',
 		'hrsh7th/nvim-cmp',
 		'L3MON4D3/LuaSnip',
+		'rafamadriz/friendly-snippets',
 		'saadparwaiz1/cmp_luasnip',
 		"onsails/lspkind.nvim",
 	},
@@ -41,6 +42,9 @@ return {
 			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' }, -- For luasnip users.
+				{ name = 'calc' },
+				{ name = 'path' },
+				{ name = 'treesitter' },
 				-- { name = 'ultisnips' }, -- For ultisnips users.
 				-- { name = 'snippy' }, -- For snippy users.
 			}, {
