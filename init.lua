@@ -1,3 +1,4 @@
+--THIS IS A TEST
 --CORE
 require("core.options")
 require("core.keymaps")
