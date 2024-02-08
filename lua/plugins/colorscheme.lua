@@ -38,8 +38,6 @@ config = function(_, opts)
 				require("ayu").setup(opts)
 end
 				}
-
-
 }
 
 
