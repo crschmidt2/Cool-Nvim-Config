@@ -3,7 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 --SAVE & QUIT
-vim.keymap.set('', '<C-w>', '<cmd>w<CR>')
+vim.keymap.set('', '<C-s>', '<cmd>w<CR>')
 vim.keymap.set('', '<C-q>', '<cmd>q<CR>')
 vim.keymap.set('', '<C-x>', '<cmd>qa<CR>')
 
@@ -27,7 +27,7 @@ vim.keymap.set('', '<leader>c', '<cmd>w<CR><cmd>so<CR><cmd>Lazy install<CR>')
 
 --TOGGLE LINE NUMBERS
 vim.keymap.set('', '<leader>n', function() 
-local lineNumbers = vim.opt.number:get()
-vim.opt.number = not lineNumbers
-vim.opt.relativenumber = not lineNumbers
+				local lineNumbers = vim.opt.number:get()
+				vim.opt.number = not lineNumbers
+				vim.opt.relativenumber = not lineNumbers
 end )
