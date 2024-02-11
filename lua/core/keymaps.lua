@@ -2,6 +2,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
+--GIT
+vim.keymap.set('', '<leader>gp', '<cmd>!git push<CR>')
+
 --SAVE & QUIT
 vim.keymap.set('', '<C-s>', '<cmd>w<CR>')
 vim.keymap.set('', '<C-q>', '<cmd>q<CR>')

@@ -6,7 +6,7 @@ return {
 
 												local o = { buffer = bufnr }
 
-												vim.keymap.set('n', '<leader>gp', gs.preview_hunk, o)
+												vim.keymap.set('n', '<leader>gh', gs.preview_hunk, o)
 
 								end,
 								signs = {
