@@ -33,6 +33,7 @@ return {
 								},
 								config = function(_, opts)
 												require("nvim-tree").setup(opts)
+												vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {fg = 'Gray31'})
 								end
 				},
 				{
