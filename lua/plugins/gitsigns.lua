@@ -3,7 +3,7 @@ return {
 				opts =  {
 								on_attach = function(bufnr)
 												local gs = package.loaded.gitsigns
-												
+
 												local o = { buffer = bufnr }
 
 												vim.keymap.set('n', '<leader>gp', gs.preview_hunk, o)
@@ -12,8 +12,8 @@ return {
 								signs = {
 												add          = { text = '' },
 												change       = { text = '󰛿' },
-												delete       = { text = '' },
-												topdelete    = { text = '' },
+												delete       = { text = '󰳛' },
+												topdelete    = { text = '󰳡' },
 												changedelete = { text = '' },
 												untracked    = { text = '┆' },
 								},
