@@ -4,7 +4,7 @@ return {
 				opts = {
 								ensure_installed = {"lua"},
 								highlight = { enable = true, use_languagetree = true },
-								indent = { enable = true },
+								indent = { enable = false },
 								incremental_selection = {
 												enable = true,
 												keymaps = {
