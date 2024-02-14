@@ -1,4 +1,4 @@
-return 
+return
 				{
 								{
 												"folke/tokyonight.nvim",
@@ -19,7 +19,7 @@ return
 												end
 								},
 								{
-												"navarasu/onedark.nvim", 
+												"navarasu/onedark.nvim",
 												lazy = true,
 												opts = {
 																style="cool",
