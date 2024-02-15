@@ -30,15 +30,16 @@ return
 		opts = {
 			style = "cool",
 			colors = {
-							borderColor = "#ffffff",
-							nontext = "#242b38"
+				borderColor = "#ffffff",
+				nontext = "#242b38"
 			},
 
 			highlights = {
-				["FloatBorder"] = { fg = '$borderColor', bg = '$nontext'},
-				["TelescopePreviewBorder"] = { fg = '$borderColor', bg = '$nontext'},
-				["TelescopeResultsBorder"] = { fg = '$borderColor', bg = '$nontext'},
-				["TelescopePromptBorder"] = { fg = '$borderColor', bg = '$nontext'},
+				["FloatBorder"] = { fg = '$borderColor', bg = '$nontext' },
+				["NormalFloat"] = { bg = '$nontext' },
+				["TelescopePreviewBorder"] = { fg = '$borderColor', bg = '$nontext' },
+				["TelescopeResultsBorder"] = { fg = '$borderColor', bg = '$nontext' },
+				["TelescopePromptBorder"] = { fg = '$borderColor', bg = '$nontext' },
 				["NvimTreeIndentMarker"] = { fg = 'Gray31' },
 			},
 		},

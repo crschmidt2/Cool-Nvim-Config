@@ -16,10 +16,10 @@ vim.keymap.set('', '<C-l>', '<C-w>l')
 vim.keymap.set('', '<A-y>', '<C-w>v')
 vim.keymap.set('', '<A-x>', '<C-w>s')
 
-vim.keymap.set('', '<A-p>', '5<C-w><S-<>')
-vim.keymap.set('', '<A-b>', '5<C-w><S-->')
-vim.keymap.set('', '<A-f>', '5<C-w><S-+>')
-vim.keymap.set('', '<A-n>', '5<C-w><S->>')
+vim.keymap.set('', '<A-l>', '5<C-w><S-<>')
+vim.keymap.set('', '<A-j>', '5<C-w><S-->')
+vim.keymap.set('', '<A-k>', '5<C-w><S-+>')
+vim.keymap.set('', '<A-h>', '5<C-w><S->>')
 vim.keymap.set('', '<A-=>', '<C-w>=')
 
 --CONFIG DEVELOPMENT

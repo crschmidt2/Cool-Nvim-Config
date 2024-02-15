@@ -1,16 +1,19 @@
 --TODO: Edit keybinds to use telescope versions of commands when applicable/preferable
 return {
 	{
-		"williamboman/mason.nvim",
-		opts = {},
-	},
-	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "williamboman/mason.nvim" },
+		dependencies = {
+			{
+				"williamboman/mason.nvim",
+				opts = {},
+			},
+			{
+				{ "folke/neodev.nvim", opts = {} }
+			}
+		},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("core.lspconfig")
-
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 				vim.lsp.handlers.hover, {
 					border = "single",
@@ -52,7 +55,7 @@ return {
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
-},
+				},
 				mapping = cmp.mapping.preset.insert({
 					['<Tab>'] = function(fallback)
 						if cmp.visible() then
