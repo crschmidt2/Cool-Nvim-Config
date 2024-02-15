@@ -1,12 +1,12 @@
 --TODO: Edit keybinds to use telescope versions of commands when applicable/preferable
 return {
 	{
+		"williamboman/mason.nvim",
+		opts = {},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{
-				"williamboman/mason.nvim",
-				opts = {},
-			},
 			{
 				{ "folke/neodev.nvim", opts = {} }
 			}

@@ -6,8 +6,11 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 --TABS & INDENT
-vim.opt.tabstop = 1
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.wrap = false
 
 --COLOR
 vim.opt.termguicolors = true
@@ -19,3 +22,7 @@ vim.g.loaded_netrwPlugin = 1
 --SEARCHING
 vim.opt.ignorecase = true
 vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+--SCROLLING
+vim.opt.scrolloff = 4
