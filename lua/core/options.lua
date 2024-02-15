@@ -18,4 +18,4 @@ vim.g.loaded_netrwPlugin = 1
 
 --SEARCHING
 vim.opt.ignorecase = true
-vim.opt.hlsearch = false 
+vim.opt.hlsearch = false

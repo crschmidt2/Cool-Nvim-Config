@@ -17,8 +17,8 @@ vim.keymap.set('', '<A-y>', '<C-w>v')
 vim.keymap.set('', '<A-x>', '<C-w>s')
 
 vim.keymap.set('', '<A-p>', '5<C-w><S-<>')
-vim.keymap.set('', '<A-d>', '5<C-w><S-->')
-vim.keymap.set('', '<A-u>', '5<C-w><S-+>')
+vim.keymap.set('', '<A-b>', '5<C-w><S-->')
+vim.keymap.set('', '<A-f>', '5<C-w><S-+>')
 vim.keymap.set('', '<A-n>', '5<C-w><S->>')
 vim.keymap.set('', '<A-=>', '<C-w>=')
 
@@ -26,7 +26,7 @@ vim.keymap.set('', '<A-=>', '<C-w>=')
 vim.keymap.set('', '<leader>c', '<cmd>w<CR><cmd>so<CR><cmd>Lazy install<CR>')
 
 --TOGGLE LINE NUMBERS
-vim.keymap.set('', '<leader>n', function() 
+vim.keymap.set('', '<leader>n', function()
 				local lineNumbers = vim.opt.number:get()
 				vim.opt.number = not lineNumbers
 				vim.opt.relativenumber = not lineNumbers
