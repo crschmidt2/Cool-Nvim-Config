@@ -22,12 +22,12 @@ vim.keymap.set('', '<A-f>', '5<C-w><S-+>')
 vim.keymap.set('', '<A-n>', '5<C-w><S->>')
 vim.keymap.set('', '<A-=>', '<C-w>=')
 
---CONFIG DEVELOPMENT
-vim.keymap.set('', '<leader>c', '<cmd>w<CR><cmd>so<CR><cmd>Lazy install<CR>')
+--YANKING + PASTING
+vim.keymap.set({ 'n', 'v' }, '<C-p>', '"0p')
 
 --TOGGLE LINE NUMBERS
 vim.keymap.set('', '<leader>n', function()
-				local lineNumbers = vim.opt.number:get()
-				vim.opt.number = not lineNumbers
-				vim.opt.relativenumber = not lineNumbers
-end )
+  local lineNumbers = vim.opt.number:get()
+  vim.opt.number = not lineNumbers
+  vim.opt.relativenumber = not lineNumbers
+end)
