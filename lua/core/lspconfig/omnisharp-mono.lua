@@ -1,6 +1,6 @@
 --local omniSharpPath = vim.fn.stdpath("data") ..
 local omnisharpPath = vim.fn.stdpath("data") ..
-    "/mason/bin/omnisharp-mono"
+    "\\mason\\packages\\omnisharp\\libexec\\OmniSharp.dll"
 
 print(omnisharpPath)
 
