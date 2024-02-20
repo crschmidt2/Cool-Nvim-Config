@@ -1,4 +1,3 @@
---TODO: Edit keybinds to use telescope versions of commands when applicable/preferable
 return {
   {
     "williamboman/mason.nvim",
@@ -23,19 +22,16 @@ return {
           vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
           local opts = { buffer = ev.buf }
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
           vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<F4>', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
           vim.keymap.set('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)
-          vim.api.nvim_create_autocmd({ 'BufWrite', 'BufWritePre' }, {
+          vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
             callback = function()
-              vim.lsp.buf.format { async = true }
+              vim.lsp.buf.format()
             end
           })
         end,
