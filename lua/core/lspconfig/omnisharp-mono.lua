@@ -3,8 +3,8 @@ local omnisharpPath = vim.fn.stdpath("data") ..
     "/mason/bin/omnisharp"
 local pid = vim.fn.getpid()
 
-print(tostring(omnisharpPath))
-print(pid)
+--print(tostring(omnisharpPath))
+--print(pid)
 
 require 'lspconfig'.omnisharp.setup {
 
