@@ -5,7 +5,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { { "folke/neodev.nvim", opts = {} }, { "Hoffs/omnisharp-extended-lsp.nvim", } },
+    dependencies = { { "folke/neodev.nvim", opts = {} }, { "Decodetalkers/csharpls-extended-lsp.nvim" }, { "Hoffs/omnisharp-extended-lsp.nvim" } },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("core.lspconfig")
