@@ -1,11 +1,17 @@
---local omniSharpPath = vim.fn.stdpath("data") ..
 local omnisharpPath = vim.fn.stdpath("data") ..
-    "\\mason\\packages\\omnisharp\\libexec\\OmniSharp.dll"
+    --"/mason/packages/omnisharp/libexec/OmniSharp.dll"
+    "/mason/bin/omnisharp"
+local pid = vim.fn.getpid()
 
-print(omnisharpPath)
+print(tostring(omnisharpPath))
+print(pid)
 
 require 'lspconfig'.omnisharp.setup {
-  cmd = { "dotnet", omnisharpPath },
+
+  handlers = {
+    ["textDocument/definition"] = require('omnisharp_extended').handler,
+  },
+  cmd = { tostring(omnisharpPath), '--languageserver', '--hostPID', tostring(pid) },
 
   -- Enables support for reading code style, naming convention and analyzer
   -- settings from .editorconfig.
@@ -32,7 +38,7 @@ require 'lspconfig'.omnisharp.setup {
   -- have a negative impact on initial completion responsiveness,
   -- particularly for the first few completion sessions after opening a
   -- solution.
-  enable_import_completion = false,
+  enable_import_completion = true,
 
   -- Specifies whether to include preview versions of the .NET SDK when
   -- determining which version to use for project loading.

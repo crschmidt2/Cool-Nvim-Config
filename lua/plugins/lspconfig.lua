@@ -5,7 +5,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { { "folke/neodev.nvim", opts = {} } },
+    dependencies = { { "folke/neodev.nvim", opts = {} }, { "Hoffs/omnisharp-extended-lsp.nvim", } },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("core.lspconfig")
@@ -21,7 +21,7 @@ return {
         callback = function(ev)
           vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
           local opts = { buffer = ev.buf }
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
           vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
