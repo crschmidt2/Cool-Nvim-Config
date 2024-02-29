@@ -55,6 +55,13 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
+          ['<C-c>'] = cmp.mapping.complete({
+            config = {
+              sources = {
+                { name = 'luasnip' }
+              }
+            }
+          }),
           ['<Tab>'] = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
