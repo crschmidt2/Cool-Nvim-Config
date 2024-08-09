@@ -22,6 +22,9 @@ return {
           quit_on_open = true
         },
       },
+      git = {
+        enable = false
+      },
       hijack_cursor = true,
       renderer = {
         add_trailing = true,
