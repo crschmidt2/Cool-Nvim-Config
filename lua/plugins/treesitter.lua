@@ -20,5 +20,14 @@ return {
     vim.filetype.add({
       pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
     })
+
+    -- CLASSIC ASP HIGHLIGHTING
+    vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
+      callback = function()
+        if vim.opt.filetype:get() == 'aspvbs' then
+          vim.api.nvim_command('set ft=vb')
+        end
+      end
+    })
   end
 }
