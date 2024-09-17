@@ -29,11 +29,11 @@ return {
           vim.keymap.set('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)
-          vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-            callback = function()
-              vim.lsp.buf.format()
-            end
-          })
+          -- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+          --   callback = function()
+          --     vim.lsp.buf.format()
+          --   end
+          -- })
         end,
       })
     end
