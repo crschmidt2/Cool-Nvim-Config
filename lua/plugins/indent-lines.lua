@@ -1,5 +1,7 @@
 return {
+  {
   "lukas-reineke/indent-blankline.nvim",
+  event = "VeryLazy",
   main = "ibl",
   ---@module "ibl"
   ---@type ibl.config
@@ -34,4 +36,9 @@ return {
 
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
   end
+},
+{
+  "HiPhish/rainbow-delimiters.nvim",
+  event = "VeryLazy"
+}
 }

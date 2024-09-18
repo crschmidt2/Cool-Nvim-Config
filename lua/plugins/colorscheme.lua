@@ -3,14 +3,29 @@
 --:echo synIDattr(synIDtrans(hlID('NonText')), 'bg')
 --to get colors: :lua print(vim.inspect(vim.api.nvim_get_color_map()))
 --
---vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {fg = 'Gray31'})
+
+-- use echo synIDattr(synIDtrans(hlID("NonText")), "fg#") to get Hex code of highlight group!
+
+--Gets the hex color code for a highlight group (by name)
+local getHgHexColor = function(highlightGroup, what)
+  local fn = vim.fn
+  local highlightColor = fn.synIDattr(fn.synIDtrans(fn.hlID(highlightGroup)), what .. '#')
+  print(highlightColor)
+  return highlightColor
+end
+
 return
 {
   {
     "zaldih/themery.nvim",
     priority = 1000,
     opts = {
-      themes = { "tokyonight", "onedark", "ayu", "gruvbox" },
+      themes = {
+        "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm",
+        "onedark",
+        "ayu",
+        "gruvbox",
+        "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave" },
       livePreview = true
     },
     config = function(_, opts)
@@ -18,6 +33,7 @@ return
       require("themery").setup(opts)
     end
   },
+
   {
     "folke/tokyonight.nvim",
     lazy = true,
@@ -32,26 +48,19 @@ return
         h.LineNr = { fg = c.comment }
       end,
     },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-    end
+    config = true
   },
   {
     "navarasu/onedark.nvim",
     lazy = true,
     priority = 999,
     opts = {
-      style = "cool",
+      style = "darker",
       colors = {
-        borderColor = "#FFFFFF",
-        nontext = "#242b38"
+        nontext = 'clear',
       },
       highlights = {
-        ["FloatBorder"] = { fg = '$borderColor', bg = '$nontext' },
-        ["TelescopePreviewBorder"] = { fg = '$borderColor', bg = '$nontext' },
-        ["TelescopeResultsBorder"] = { fg = '$borderColor', bg = '$nontext' },
-        ["TelescopePromptBorder"] = { fg = '$borderColor', bg = '$nontext' },
-        ["NvimTreeIndentMarker"] = { fg = 'Gray31' },
+        ["FloatBorder"] = { bg = '$nontext' },
       },
     },
     config = true,
@@ -70,10 +79,47 @@ return
   {
     "ellisonleao/gruvbox.nvim",
     priority = 999,
-    config = function()
-      require("gruvbox").setup()
-      vim.api.nvim_set_hl(0, "FloatBorder", { fg = "Red" })
-      vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { fg = "Red" })
-    end
+    opts = {
+      overrides = {
+        SignColumn = { bg = 'None' },
+      }
+    },
+    config = true
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    priority = 999,
+    lazy = true,
+    config = true,
+    opts = {
+      --EXAMPLE HIGHLIGHT CONFIG
+      colors = {
+        --     palette = {
+        --       -- change all usages of these colors
+        --       sumiInk0 = "#000000",
+        --       fujiWhite = "#FFFFFF",
+        --     },
+        theme = {
+          --       -- change specific usages for a certain theme, or for all of them
+          --       wave = {
+          --         ui = {
+          --           float = {
+          --             bg = "none",
+          --           },
+          --         },
+          --       },
+          --       dragon = {
+          --         syn = {
+          --           parameter = "yellow",
+          --         },
+          --       },
+          all = {
+            ui = {
+              bg_gutter = "none"
+            }
+          }
+        }
+      },
+    }
   }
 }

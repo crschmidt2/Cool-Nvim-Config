@@ -1,6 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  cmd = "Telescope",
   keys = {
     { '<leader>he', '<cmd>Telescope help_tags theme=get_ivy<CR>',                 desc = 'Telescope search help tags' },
     { '<leader>ff', '<cmd>Telescope find_files<CR>',                              desc = 'Telescope find files' },

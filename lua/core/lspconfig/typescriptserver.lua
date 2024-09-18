@@ -15,7 +15,7 @@ require 'lspconfig'.ts_ls.setup {
       {
             name = '@vue/typescript-plugin',
         location = vue_language_server_path,
-        languages = { 'vue' },
+        languages = { 'vue', 'typescript', 'javascript' },
       },
     },
   },

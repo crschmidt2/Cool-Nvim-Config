@@ -1,12 +1,14 @@
 return {
   {
-    "williamboman/mason.nvim",
-    opts = {},
-  },
-  {
     "neovim/nvim-lspconfig",
-    dependencies = { { "folke/neodev.nvim", opts = {} }, { "Decodetalkers/csharpls-extended-lsp.nvim" }, { "Hoffs/omnisharp-extended-lsp.nvim" } },
-    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "folke/neodev.nvim",                       opts = {} },
+      { "Decodetalkers/csharpls-extended-lsp.nvim" },
+      { "Hoffs/omnisharp-extended-lsp.nvim" },
+      { "williamboman/mason.nvim",                 opts = {}, }
+    },
+    -- event = { "BufReadPre", "BufNewFile" },
+    event = { "VeryLazy" },
     config = function()
       require("core.lspconfig")
 
