@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   enabled = true,
   opts = {
-    ensure_installed = { "lua", "markdown", "json", "vimdoc", "javascript", "typescript", "rust", "c_sharp", "vue"  },
+    ensure_installed = { "lua", "markdown", "json", "vimdoc", "javascript", "typescript", "rust", "c_sharp", "vue", "html", "css"  },
     highlight = { enable = true, use_languagetree = true },
     indent = { enable = false },
     incremental_selection = {
