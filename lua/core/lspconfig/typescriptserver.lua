@@ -1,6 +1,6 @@
 --local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --require 'lspconfig'.tsserver.setup {
-  --capabilities = capabilities,
+--capabilities = capabilities,
 --}
 
 
@@ -13,7 +13,7 @@ require 'lspconfig'.ts_ls.setup {
   init_options = {
     plugins = {
       {
-            name = '@vue/typescript-plugin',
+        name = '@vue/typescript-plugin',
         location = vue_language_server_path,
         languages = { 'vue', 'typescript', 'javascript' },
       },
