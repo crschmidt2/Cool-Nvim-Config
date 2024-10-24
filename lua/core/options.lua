@@ -1,5 +1,6 @@
 --CLIPBOARD
 vim.opt.clipboard = "unnamedplus"
+
 --LINE NUMBER
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -21,6 +22,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.ignorecase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.inccommand = ""
 
 --SCROLLING
 vim.opt.scrolloff = 4
