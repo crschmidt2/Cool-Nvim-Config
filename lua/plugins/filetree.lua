@@ -14,6 +14,9 @@ return {
     },
 
     opts = {
+      view = {
+        side = 'right'
+      },
       update_focused_file = {
         enable = true,
       },

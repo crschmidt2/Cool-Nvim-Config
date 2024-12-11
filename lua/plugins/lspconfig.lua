@@ -5,10 +5,23 @@ return {
       { "folke/neodev.nvim",                       opts = {} },
       { "Decodetalkers/csharpls-extended-lsp.nvim" },
       { "Hoffs/omnisharp-extended-lsp.nvim" },
-      { "williamboman/mason.nvim",                 opts = {}, }
+      { "williamboman/mason.nvim",                 opts = {}, },
+      {
+        "ray-x/lsp_signature.nvim",
+        event = "InsertEnter",
+        dependencies = { 'neovim/nvim-lspconfig' },
+        opts = {
+          bind = true,
+          handler_opts = {
+            border = "rounded"
+          },
+          hint_prefix = "",
+        },
+        config = function(_, opts) require 'lsp_signature'.setup(opts) end
+      }
     },
-    -- event = { "BufReadPre", "BufNewFile" },
-    event = { "VeryLazy" },
+    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "VeryLazy" },
     config = function()
       require("core.lspconfig")
 
@@ -43,7 +56,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
-    dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
+    -- dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "onsails/lspkind.nvim", "hrsh7th/cmp-nvim-lsp-signature-help" },
+    dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "onsails/lspkind.nvim" },
     config = function()
       local cmp = require 'cmp'
       cmp.setup({
@@ -57,13 +71,14 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ['<C-c>'] = cmp.mapping.complete({
-            config = {
-              sources = {
-                { name = 'luasnip' }
-              }
-            }
-          }),
+          -- Not sure if needed
+          -- ['<C-c>'] = cmp.mapping.complete({
+          --   config = {
+          --     sources = {
+          --       { name = 'luasnip' }
+          --     }
+          --   }
+          -- }),
           ['<Tab>'] = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -83,9 +98,24 @@ return {
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-        }, {
+          -- { name = 'nvim_lsp_signature_help' },
           { name = 'buffer' },
-        })
+        }),
+        formatting = {
+          format = require('lspkind').cmp_format({
+            mode = 'text_symbol',
+            maxwidth = {
+              menu = 50,
+              abbr = 50,
+            },
+            ellipsis_char = '...',
+            show_labelDetails = true,
+
+            before = function(_, vim_item)
+              return vim_item
+            end
+          })
+        }
       })
 
       cmp.setup.filetype('gitcommit', {

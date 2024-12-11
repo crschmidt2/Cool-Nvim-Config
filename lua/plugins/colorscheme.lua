@@ -14,6 +14,10 @@ local getHgHexColor = function(highlightGroup, what)
   return highlightColor
 end
 
+-- NEW IMPORTANT STUFF
+-- Use :Inspect! to get info about current cursor (including buffer number)
+-- Use :lua vim.print(vim.inspect_pos(buffer#, row#, col#)) to get highlight info about place cursor can't reach
+
 return
 {
   {
