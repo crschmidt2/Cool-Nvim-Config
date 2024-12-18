@@ -6,7 +6,7 @@ return {
     { '<leader>he', '<cmd>Telescope help_tags theme=get_ivy<CR>',                 desc = 'Telescope search help tags' },
     { '<leader>ff', '<cmd>Telescope find_files<CR>',                              desc = 'Telescope find files' },
     { '<leader>fg', '<cmd>Telescope live_grep<CR>',                               desc = 'Telescope find in files' },
-    { '<leader>fr', '<cmd>Telescope git_files<CR>',                               desc = 'Telescope find git files' },
+    { '<leader>gf', '<cmd>Telescope git_files<CR>',                               desc = 'Telescope find git files' },
     { '<leader>fh', '<cmd>Telescope highlights theme=get_ivy<CR>',                desc = 'Telescope find highlights' },
     { '<leader>bf', '<cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', desc = 'Telescope find in current buffer' },
     { '<leader>gs', '<cmd>Telescope git_status theme=get_ivy<CR>',                desc = 'Telescope git status' },
