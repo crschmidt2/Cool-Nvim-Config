@@ -9,7 +9,7 @@ return {
     { '<leader>gf', '<cmd>Telescope git_files<CR>',                               desc = 'Telescope find git files' },
     { '<leader>fh', '<cmd>Telescope highlights theme=get_ivy<CR>',                desc = 'Telescope find highlights' },
     { '<leader>bf', '<cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', desc = 'Telescope find in current buffer' },
-    { '<leader>gs', '<cmd>Telescope git_status theme=get_ivy<CR>',                desc = 'Telescope git status' },
+    { '<leader>gc', '<cmd>Telescope git_status theme=get_ivy<CR>',                desc = 'Telescope git changes' },
     { 'gr',         '<cmd>Telescope lsp_references theme=get_ivy<CR>',            desc = 'Telescope references' },
     { 'gi',         '<cmd>Telescope lsp_implementations theme=get_ivy<CR>',       desc = 'Telescope implementations' },
     --    { 'gd',         '<cmd>Telescope lsp_definitions theme=get_ivy<CR>', desc = 'Telescope definitions' },
