@@ -12,8 +12,9 @@ return {
     { '<leader>gc', '<cmd>Telescope git_status theme=get_ivy<CR>',                desc = 'Telescope git changes' },
     { 'gr',         '<cmd>Telescope lsp_references theme=get_ivy<CR>',            desc = 'Telescope references' },
     { 'gi',         '<cmd>Telescope lsp_implementations theme=get_ivy<CR>',       desc = 'Telescope implementations' },
-    --    { 'gd',         '<cmd>Telescope lsp_definitions theme=get_ivy<CR>', desc = 'Telescope definitions' },
-    --{ 'gd',         "<cmd>lua require('omnisharp_extended').telescope_lsp_definitions()<CR>", desc = 'Telescope definitions' },
+    -- { 'gd',         '<cmd>Telescope lsp_definitions theme=get_ivy<CR>',                       desc = 'Telescope definitions' },
+    -- { 'gd',         "<cmd>lua require('omnisharp_extended').telescope_lsp_definitions()<CR>", desc = 'Telescope definitions' },
     { '<leader>bs', '<cmd>Telescope lsp_document_symbols theme=get_ivy<CR>',      desc = 'Telescope symbols' },
+    -- { '<leader>cs', '<cmd>Telescope colorscheme<CR>',                                         desc = 'Telescope colorscheme' },
   },
 }

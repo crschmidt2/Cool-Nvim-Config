@@ -7,12 +7,12 @@
 -- use echo synIDattr(synIDtrans(hlID("NonText")), "fg#") to get Hex code of highlight group!
 
 --Gets the hex color code for a highlight group (by name)
-local getHgHexColor = function(highlightGroup, what)
-  local fn = vim.fn
-  local highlightColor = fn.synIDattr(fn.synIDtrans(fn.hlID(highlightGroup)), what .. '#')
-  print(highlightColor)
-  return highlightColor
-end
+-- local getHgHexColor = function(highlightGroup, what)
+--   local fn = vim.fn
+--   local highlightColor = fn.synIDattr(fn.synIDtrans(fn.hlID(highlightGroup)), what .. '#')
+--   print(highlightColor)
+--   return highlightColor
+-- end
 
 -- NEW IMPORTANT STUFF
 -- Use :Inspect! to get info about current cursor (including buffer number)
@@ -28,7 +28,6 @@ return
         "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm",
         "onedark",
         "ayu",
-        "gruvbox",
         "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave" },
       livePreview = true
     },
@@ -79,16 +78,6 @@ return
     config = function(_, opts)
       require("ayu").setup(opts)
     end
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    priority = 999,
-    opts = {
-      overrides = {
-        SignColumn = { bg = 'None' },
-      }
-    },
-    config = true
   },
   {
     "rebelot/kanagawa.nvim",

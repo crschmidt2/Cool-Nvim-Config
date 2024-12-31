@@ -1,7 +1,8 @@
--- local osLogo = require("plugins.heirline.components.os-logo")
-local viMode = require("plugins.heirline.components.vi-mode")
+local conditions = require("heirline.conditions")
 
-local fileName = {
+local ViMode = require("plugins.heirline.components.vi-mode")
+
+local FileName = {
   provider = "%f",
   -- hl = {
   --   fg = "purple",
@@ -9,9 +10,34 @@ local fileName = {
   -- }
 }
 
+local Align = { provider = "%=" }
+local Space = { provider = " " }
+
+
+local DefaultStatusLine = {
+  ViMode,
+  Space,
+  FileName
+}
+
+local InactiveStatusLine = {
+  ViMode,
+  Space,
+  FileName,
+  condition = conditions.is_not_active,
+}
+
 
 return {
-  -- osLogo,
-  viMode,
-  fileName
+
+hl = function()
+        if conditions.is_active() then
+            return "StatusLine"
+        else
+            return "StatusLineNC"
+        end
+    end,
+
+  fallthrough = false,
+  InactiveStatusLine, DefaultStatusLine
 }
