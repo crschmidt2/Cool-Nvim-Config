@@ -30,14 +30,27 @@ local InactiveStatusLine = {
 
 return {
 
-hl = function()
-        if conditions.is_active() then
-            return "StatusLine"
-        else
-            return "StatusLineNC"
-        end
-    end,
+  hl = function()
+    local foreground = ""
+    if conditions.is_active() then
+      foreground = "status_line_fg"
+    else
+      foreground = "status_line_inactive_fg"
+    end
+
+    local background = ""
+    if conditions.is_active() then
+      background = "status_line_bg"
+    else
+      background = "status_line_inactive_bg"
+    end
+    return {
+      fg = foreground,
+      bg = background
+    }
+  end,
 
   fallthrough = false,
-  InactiveStatusLine, DefaultStatusLine
+  InactiveStatusLine,
+  DefaultStatusLine
 }

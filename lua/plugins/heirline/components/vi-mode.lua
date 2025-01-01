@@ -77,10 +77,10 @@ return {
     local mode = self.mode:sub(1, 1)     -- get only the first mode character
 
     local backgroundColor = ""
-    if conditions.is_not_active then
-      backgroundColor = "status_line_inactive_bg"
-    else
+    if conditions.is_active() then
       backgroundColor = "status_line_bg"
+    else
+      backgroundColor = "status_line_inactive_bg"
     end
 
     return {

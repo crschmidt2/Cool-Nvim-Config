@@ -19,7 +19,9 @@ return function()
     git_del = utils.get_highlight("diffDeleted").fg,
     git_add = utils.get_highlight("diffAdded").fg,
     git_change = utils.get_highlight("diffChanged").fg,
+    status_line_fg = utils.get_highlight("StatusLine").fg,
     status_line_bg = utils.get_highlight("StatusLine").bg,
+    status_line_inactive_fg = utils.get_highlight("StatusLineNC").fg,
     status_line_inactive_bg = utils.get_highlight("StatusLineNC").bg,
   }
 end
