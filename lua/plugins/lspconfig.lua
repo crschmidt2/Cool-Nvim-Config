@@ -5,6 +5,7 @@ return {
       { "folke/neodev.nvim",                       opts = {} },
       { "Decodetalkers/csharpls-extended-lsp.nvim" },
       { "Hoffs/omnisharp-extended-lsp.nvim" },
+      { "Hoffs/omnisharp-extended-lsp.nvim" },
       { "williamboman/mason.nvim",                 opts = {}, },
       {
         "ray-x/lsp_signature.nvim",

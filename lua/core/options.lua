@@ -1,6 +1,10 @@
 --CLIPBOARD
 vim.opt.clipboard = "unnamedplus"
 
+--Remove comment continuation on newline
+--DEFAULT: jcroql (see :help fo-table)
+vim.opt.formatoptions = "jql"
+
 --LINE NUMBER
 vim.opt.number = true
 vim.opt.relativenumber = true
