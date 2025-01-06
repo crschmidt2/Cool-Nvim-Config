@@ -1,8 +1,9 @@
 local conditions = require("heirline.conditions")
 
 local ViMode = require("plugins.heirline.components.vi-mode")
-
 local FileName = require("plugins.heirline.components.filename")
+local LspStatus = require("plugins.heirline.components.lsp-status")
+local Diagnostics = require("plugins.heirline.components.diagnostics")
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }
@@ -11,7 +12,10 @@ local Space = { provider = " " }
 local DefaultStatusLine = {
   ViMode,
   Space,
-  FileName
+  FileName,
+  Align,
+  LspStatus,
+  -- Diagnostics
 }
 
 local InactiveStatusLine = {
