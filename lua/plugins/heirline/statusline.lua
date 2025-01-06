@@ -2,13 +2,7 @@ local conditions = require("heirline.conditions")
 
 local ViMode = require("plugins.heirline.components.vi-mode")
 
-local FileName = {
-  provider = "%f",
-  -- hl = {
-  --   fg = "purple",
-  --   bg = "default_bg",
-  -- }
-}
+local FileName = require("plugins.heirline.components.filename")
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }
@@ -27,9 +21,7 @@ local InactiveStatusLine = {
   condition = conditions.is_not_active,
 }
 
-
 return {
-
   hl = function()
     local foreground = ""
     if conditions.is_active() then
