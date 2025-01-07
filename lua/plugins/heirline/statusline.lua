@@ -4,28 +4,59 @@ local ViMode = require("plugins.heirline.components.vi-mode")
 local FileName = require("plugins.heirline.components.filename")
 local LspStatus = require("plugins.heirline.components.lsp-status")
 local Diagnostics = require("plugins.heirline.components.diagnostics")
+local Git = require("plugins.heirline.components.git-info")
+local MacroRec = require("plugins.heirline.components.macro-recording")
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }
-
+local Rule = { provider = " | ", hl = { fg = "indent_blankline" } }
 
 local DefaultStatusLine = {
   ViMode,
   Space,
   FileName,
+  Space,
+  MacroRec,
   Align,
-  LspStatus,
-  -- Diagnostics
+  Git,
+  { Rule, condition = Git.condition },
+  Diagnostics,
+  { Rule, condition = Diagnostics.condition },
+  LspStatus
+}
+
+local EmptyFileStatusLine = {
+  ViMode,
+  Space,
+  FileName,
+  Space,
+  MacroRec,
+  Align,
+  Git,
+  condition = function()
+    return not conditions.buffer_matches({
+      bufname = { '.' }
+    })
+  end
 }
 
 local InactiveStatusLine = {
   ViMode,
   Space,
   FileName,
+  Space,
+  MacroRec,
+  Align,
+  Git,
   condition = conditions.is_not_active,
 }
 
 return {
+  condition = function()
+    return not conditions.buffer_matches({
+      buftype = { 'nofile' } }
+    )
+  end,
   hl = function()
     local foreground = ""
     if conditions.is_active() then
@@ -48,5 +79,6 @@ return {
 
   fallthrough = false,
   InactiveStatusLine,
+  EmptyFileStatusLine,
   DefaultStatusLine
 }

@@ -11,7 +11,7 @@ return {
         "ray-x/lsp_signature.nvim",
         event = "InsertEnter",
         dependencies = { 'neovim/nvim-lspconfig' },
-        opts = {
+        opts = {    
           bind = true,
           handler_opts = {
             border = "rounded"
@@ -41,8 +41,8 @@ return {
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
           vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-          vim.keymap.set({ 'n', 'v' }, '<F4>', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', '<space>f', function()
+          vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', '<leader>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)
           -- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
