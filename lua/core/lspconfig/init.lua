@@ -1,8 +1,11 @@
 require("core.lspconfig.luaserver")
+require("core.lspconfig.htmlserver")
 require("core.lspconfig.typescriptserver")
 
+-- C# & DOTNET
+-- MAKE SURE YOU INSTALL ROSLYN AND RZLS (configured in roslyn.lua package)
 -- require("core.lspconfig.csharpserver")
-require("core.lspconfig.omnisharp")
+-- require("core.lspconfig.omnisharp")
 
 require("core.lspconfig.arduinoserver")
 

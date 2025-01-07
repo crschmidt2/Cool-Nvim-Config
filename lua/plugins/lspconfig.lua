@@ -6,12 +6,24 @@ return {
       { "Decodetalkers/csharpls-extended-lsp.nvim" },
       { "Hoffs/omnisharp-extended-lsp.nvim" },
       { "Hoffs/omnisharp-extended-lsp.nvim" },
-      { "williamboman/mason.nvim",                 opts = {}, },
+      {
+        "williamboman/mason.nvim",
+        cmd = { "Mason" },
+        opts = {
+          registries = {
+            'github:mason-org/mason-registry',
+            'github:crashdummyy/mason-registry',
+          }
+        },
+        config = function(_, opts)
+          require('mason').setup(opts)
+        end
+      },
       {
         "ray-x/lsp_signature.nvim",
         event = "InsertEnter",
         dependencies = { 'neovim/nvim-lspconfig' },
-        opts = {    
+        opts = {
           bind = true,
           handler_opts = {
             border = "rounded"
