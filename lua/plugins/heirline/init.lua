@@ -4,22 +4,29 @@ return {
   "rebelot/heirline.nvim",
   event = "UiEnter",
   config = function()
-    local utils = require("heirline.utils")
     local setup_colors = require('plugins.heirline.colors.get-colors')
+    local utils = require("heirline.utils")
+    local conditions = require("heirline.conditions")
 
     --Components
     local StatusLine = require('plugins.heirline.statusline')
-    local WinBar = nil
+    -- local WinBar = require('plugins.heirline.winbar')
     local TabLine = nil
     local StatusColumn = nil
 
     require("heirline").setup({
       statusline = StatusLine,
-      winbar = WinBar,
+      -- winbar = WinBar,
       tabline = TabLine,
       statuscolumn = StatusColumn,
       opts = {
-        colors = setup_colors()
+        colors = setup_colors(),
+        disable_winbar_cb = function(args)
+          return conditions.buffer_matches({
+            buftype = { "nofile", "prompt", "help", "quickfix" },
+            filetype = { "^git.*", "fugitive", "Trouble", "dashboard" },
+          }, args.buf)
+        end,
       }
     })
 

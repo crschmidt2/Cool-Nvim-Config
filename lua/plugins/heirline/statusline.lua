@@ -1,15 +1,16 @@
 local conditions = require("heirline.conditions")
 
+local Align = { provider = "%=" }
+local Space = { provider = " " }
+local Rule = { provider = " | ", hl = { fg = "indent_blankline" } }
+
 local ViMode = require("plugins.heirline.components.vi-mode")
 local FileName = require("plugins.heirline.components.filename")
 local LspStatus = require("plugins.heirline.components.lsp-status")
 local Diagnostics = require("plugins.heirline.components.diagnostics")
 local Git = require("plugins.heirline.components.git-info")
 local MacroRec = require("plugins.heirline.components.macro-recording")
-
-local Align = { provider = "%=" }
-local Space = { provider = " " }
-local Rule = { provider = " | ", hl = { fg = "indent_blankline" } }
+local TerminalName = require("plugins.heirline.components.terminal-name")
 
 local DefaultStatusLine = {
   ViMode,
@@ -51,6 +52,16 @@ local InactiveStatusLine = {
   condition = conditions.is_not_active,
 }
 
+local TerminalStatusLine = {
+  ViMode,
+  Space,
+  TerminalName,
+  condition = function()
+    return conditions.buffer_matches({ buftype = { "terminal" } })
+  end
+}
+
+
 return {
   condition = function()
     return not conditions.buffer_matches({
@@ -78,6 +89,7 @@ return {
   end,
 
   fallthrough = false,
+  TerminalStatusLine,
   InactiveStatusLine,
   EmptyFileStatusLine,
   DefaultStatusLine
