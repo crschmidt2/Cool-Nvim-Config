@@ -15,10 +15,10 @@ end
 
 return {
   init = function(self)
-    self.mode = vim.fn.mode(1)     -- :h mode()
+    self.mode = vim.fn.mode(1) -- :h mode()
   end,
   static = {
-    mode_names = {     -- change the strings if you like it vvvvverbose!
+    mode_names = { -- change the strings if you like it vvvvverbose!
       n = "N",
       no = "N?",
       nov = "N?",
@@ -67,14 +67,20 @@ return {
       R = "orange",
       r = "orange",
       ["!"] = "cyan",
-      t = "cyan",
+      t = "red",
+      nt = "red",
     }
   },
   provider = function(self)
     return getOsLogo() .. "%2(" .. self.mode_names[self.mode] .. "%)"
   end,
   hl = function(self)
-    local mode = self.mode:sub(1, 1)     -- get only the first mode character
+    local mode = self.mode -- get only the first mode character
+
+
+    if self.mode_colors[mode] == nil then
+      mode = self.mode:sub(1, 1)
+    end
 
     local backgroundColor = ""
     if conditions.is_active() then
