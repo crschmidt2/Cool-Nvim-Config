@@ -1,3 +1,4 @@
-require("core.keymaps")
+require("core.utils")
 require("core.options")
-require("core.define-signs")
+require("core.keymaps")
+require("core.commands")

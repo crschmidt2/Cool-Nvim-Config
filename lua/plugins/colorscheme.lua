@@ -64,6 +64,8 @@ return
       },
       highlights = {
         ["FloatBorder"] = { bg = '$nontext' },
+        ["NormalFloat"] = { bg = '$nontext' },
+        ["RenderMarkdownCode"] = { bg = '$nontext' },
       },
     },
     config = true,

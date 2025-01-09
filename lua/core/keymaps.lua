@@ -1,3 +1,5 @@
+local term = require("core.utils.terminal")
+
 --LEADER
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -11,10 +13,10 @@ vim.keymap.set('', '<C-x>', '<cmd>qa<CR>')
 vim.keymap.set({ 'n', 'v', 'i' }, '<C-t>', '<cmd>tabnew<CR>')
 
 --SPLIT PANES
-vim.keymap.set('', '<C-h>', '<C-w>h')
-vim.keymap.set('', '<C-j>', '<C-w>j')
-vim.keymap.set('', '<C-k>', '<C-w>k')
-vim.keymap.set('', '<C-l>', '<C-w>l')
+vim.keymap.set('', '<C-h>', function() vim.cmd.wincmd('h') end)
+vim.keymap.set('', '<C-j>', function() vim.cmd.wincmd('j') end)
+vim.keymap.set('', '<C-k>', function() vim.cmd.wincmd('k') end)
+vim.keymap.set('', '<C-l>', function() vim.cmd.wincmd('l') end)
 
 vim.keymap.set('', '<A-y>', '<C-w>v')
 vim.keymap.set('', '<A-x>', '<C-w>s')
@@ -41,11 +43,9 @@ end)
 -- to powershell.
 vim.keymap.set('t', [[<C-\>]], [[<C-\><C-n>]])
 
-local job_id = 0
 vim.keymap.set("n", "<leader>te", function()
-  vim.cmd.tabnew()
-  vim.cmd.terminal()
-
-  -- job_id = vim.bo.channel
+  term.OpenTerminalInBufTab()
 end
 )
+
+vim.keymap.set("n", "<leader>npr", "<cmd>NpmRun<CR>")
