@@ -42,13 +42,7 @@ local EmptyFileStatusLine = {
 }
 
 local InactiveStatusLine = {
-  ViMode,
-  Space,
   FileName,
-  Space,
-  MacroRec,
-  Align,
-  Git,
   condition = conditions.is_not_active,
 }
 

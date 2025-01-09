@@ -8,6 +8,7 @@ local FileNameAndIconBlock = {
     local filename = self.filename
     local extension = vim.fn.fnamemodify(filename, ":e")
     self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+    if not conditions.is_active() then self.icon_color = gray end
   end
 }
 
