@@ -1,6 +1,7 @@
 local utils = require("heirline.utils")
 local conditions = require("heirline.conditions")
 local Space = { provider = " " }
+local FileIcon = require("plugins.heirline.components.file-icon")
 
 local FileNameAndIconBlock = {
   init = function(self)
@@ -12,14 +13,6 @@ local FileNameAndIconBlock = {
   end
 }
 
-local FileIcon = {
-  provider = function(self)
-    return self.icon and (self.icon .. " ")
-  end,
-  hl = function(self)
-    return { fg = self.icon_color }
-  end
-}
 
 local FileName = {
   provider = function(self)

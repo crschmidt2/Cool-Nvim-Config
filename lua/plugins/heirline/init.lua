@@ -1,5 +1,3 @@
--- use to get possible colors: lua vim.print(require('plugins.heirline.colors.get-colors')(require('themery').getCurrentTheme().name))
-
 return {
   "rebelot/heirline.nvim",
   event = "UiEnter",
@@ -11,14 +9,14 @@ return {
     --Components
     local StatusLine = require('plugins.heirline.statusline')
     -- local WinBar = require('plugins.heirline.winbar')
-    local TabLine = nil
-    local StatusColumn = nil
+    local TabLine = require('plugins.heirline.tabline')
+    -- local StatusColumn = nil
 
     require("heirline").setup({
       statusline = StatusLine,
       -- winbar = WinBar,
       tabline = TabLine,
-      statuscolumn = StatusColumn,
+      -- statuscolumn = StatusColumn,
       opts = {
         colors = setup_colors(),
         disable_winbar_cb = function(args)
@@ -29,8 +27,6 @@ return {
         end,
       }
     })
-
-
 
     --Makes it so colorscheme reloads on change
     vim.api.nvim_create_augroup("Heirline", { clear = true })
