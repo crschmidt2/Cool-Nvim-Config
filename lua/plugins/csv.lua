@@ -10,7 +10,7 @@ return {
     'rfc_semicolon'
   },
   keys = {
-    { '<leader>cp', '<cmd>set ft=csv_pipe<CR>', desc = 'Set filetype to csv_pipe' },
+    { '<leader>cp', '<cmd>RainbowDelimSimple<CR>', desc = 'Deliminates the current buffer based on symbol under cursor' },
   },
   cmd = {
     'RainbowDelim',
