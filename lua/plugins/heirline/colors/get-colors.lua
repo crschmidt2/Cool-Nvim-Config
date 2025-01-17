@@ -23,6 +23,7 @@ return function()
     status_line_bg = utils.get_highlight("StatusLine").bg,
     status_line_inactive_fg = utils.get_highlight("StatusLineNC").fg,
     status_line_inactive_bg = utils.get_highlight("StatusLineNC").bg,
-    indent_blankline = utils.get_highlight("IndentBlanklineChar").fg
+    indent_blankline = utils.get_highlight("IndentBlanklineChar").fg,
+    tabline_active_bg = utils.get_highlight("TabLine").bg
   }
 end
