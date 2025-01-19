@@ -81,7 +81,6 @@ return {
       bg = background
     }
   end,
-
   fallthrough = false,
   TerminalStatusLine,
   InactiveStatusLine,
