@@ -30,7 +30,8 @@ local TabIcon = {
 local TabName = {
   -- update = "FileReadPost",
   provider = function(self)
-    local filename = vim.fn.fnamemodify(self.filename, ":t")
+    -- local filename = vim.fn.fnamemodify(self.filename, ":t")
+    local filename = vim.fn.fnamemodify(self.filename, ":.:t")
     if filename == "" then return "[No Name]" end
 
     if not conditions.width_percent_below(#filename, 0.25) then

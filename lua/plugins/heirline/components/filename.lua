@@ -19,7 +19,7 @@ local FileName = {
     local filename = vim.fn.fnamemodify(self.filename, ":.")
     if filename == "" then return "[No Name]" end
 
-    if not conditions.width_percent_below(#filename, 0.25) then
+    if not conditions.width_percent_below(#filename, 0.5) then
       filename = vim.fn.pathshorten(filename)
     end
     return filename
