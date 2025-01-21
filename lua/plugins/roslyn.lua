@@ -7,6 +7,7 @@ return {
   {
     "seblj/roslyn.nvim",
     ft = { "cs", "razor" },
+    cmd = { "Roslyn" },
     dependencies = {
       -- "neovim/nvim-lspconfig",
       -- RAZOR AND RAZOR PAGES LANGUAGE SERVER (not working)
