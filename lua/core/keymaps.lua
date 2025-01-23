@@ -31,9 +31,8 @@ vim.keymap.set('', '<A-=>', '<C-w>=')
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '"0p')
 
 --TOGGLE LINE NUMBERS
-vim.keymap.set('', '<leader>n', function()
-  local lineNumbers = vim.opt.number:get()
-  vim.opt.number = not lineNumbers
+vim.keymap.set('', '<leader>rn', function()
+  local lineNumbers = vim.opt.relativenumber:get()
   vim.opt.relativenumber = not lineNumbers
 end)
 
