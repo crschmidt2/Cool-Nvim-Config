@@ -52,8 +52,6 @@ vim.keymap.set('t', '<C-k>', function() termWinCmd('k') end)
 vim.keymap.set('t', '<C-l>', function() termWinCmd('l') end)
 
 vim.keymap.set("n", "<leader>te", function()
-  term.OpenTerminalInBufTab()
+    term.toggle_floating_terminal()
 end
 )
-
-vim.keymap.set("n", "<leader>npr", "<cmd>NpmRun<CR>")
