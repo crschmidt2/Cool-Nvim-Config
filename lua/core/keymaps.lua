@@ -32,8 +32,8 @@ vim.keymap.set({ 'n', 'v' }, '<C-p>', '"0p')
 
 --TOGGLE LINE NUMBERS
 vim.keymap.set('', '<leader>rn', function()
-  local lineNumbers = vim.opt.relativenumber:get()
-  vim.opt.relativenumber = not lineNumbers
+    local lineNumbers = vim.opt.relativenumber:get()
+    vim.opt.relativenumber = not lineNumbers
 end)
 
 -- TERMINAL
@@ -42,8 +42,8 @@ end)
 -- to powershell.
 local termNormalMode = [[<C-\><C-n>]]
 local termWinCmd = function(wincmd)
-  vim.api.nvim_input(termNormalMode)
-  vim.cmd.wincmd(wincmd)
+    vim.api.nvim_input(termNormalMode)
+    vim.cmd.wincmd(wincmd)
 end
 vim.keymap.set('t', [[<ESC>]], termNormalMode)
 vim.keymap.set('t', '<C-h>', function() termWinCmd('h') end)
@@ -51,7 +51,7 @@ vim.keymap.set('t', '<C-j>', function() termWinCmd('j') end)
 vim.keymap.set('t', '<C-k>', function() termWinCmd('k') end)
 vim.keymap.set('t', '<C-l>', function() termWinCmd('l') end)
 
-vim.keymap.set("n", "<leader>te", function()
+vim.keymap.set("n", "<leader>t", function()
     term.toggle_floating_terminal()
 end
 )
