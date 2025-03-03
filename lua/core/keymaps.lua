@@ -10,7 +10,7 @@ vim.keymap.set('', '<C-q>', '<cmd>q<CR>')
 vim.keymap.set('', '<C-x>', '<cmd>qa<CR>')
 
 --TABS
-vim.keymap.set({ 'n', 'v', 'i' }, '<C-t>', '<cmd>tabnew<CR>')
+-- vim.keymap.set({ 'n', 'v', 'i' }, '<C-t>', '<cmd>tabnew<CR>')
 
 --SPLIT PANES
 vim.keymap.set('', '<C-h>', function() vim.cmd.wincmd('h') end)
