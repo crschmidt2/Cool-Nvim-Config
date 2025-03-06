@@ -7,6 +7,7 @@ require("core.lspconfig.typescriptserver")
 -- require("core.lspconfig.csharpserver")
 -- require("core.lspconfig.omnisharp")
 
+require("core.lspconfig.cpp")
 require("core.lspconfig.arduinoserver")
 
 -- Enable if working with Vue 2
