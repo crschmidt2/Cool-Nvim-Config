@@ -1,7 +1,7 @@
 --Plugin for configuring roslyn language server for C#
 
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- local on_attach = require('lspatt').
+local roslynMasonPath = vim.fn.stdpath("data") ..
+    "/mason/packages/roslyn/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
 
 return {
   {
@@ -9,16 +9,6 @@ return {
     ft = { "cs", "razor" },
     cmd = { "Roslyn" },
     dependencies = {
-      -- "neovim/nvim-lspconfig",
-      -- RAZOR AND RAZOR PAGES LANGUAGE SERVER (not working)
-      -- {
-      --   "tris203/rzls.nvim",
-      --   dependencies = { "seblj/roslyn.nvim" },
-      --   opts = {},
-      --   config = function(_, opts)
-      --     require('rzls').setup(opts)
-      --   end
-      -- },
     },
     init = function()
       vim.filetype.add {
@@ -30,9 +20,6 @@ return {
     end,
     opts = {
       config = {
-        -- on_attach = require 'lspattach',
-        -- capabilities = capabilities,
-        -- handlers = require('rzls.roslyn_handlers'),
         settings = {
           ['csharp|inlay_hints'] = {
             csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -54,26 +41,13 @@ return {
           },
         },
       },
+      exe = {
+          "dotnet",
+          roslynMasonPath
+      },
       args = {
         '--logLevel=Information',
         '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-        '--razorSourceGenerator=' .. vim.fs.joinpath(
-          vim.fn.stdpath 'data' --[[@as string]],
-          'mason',
-          'packages',
-          'roslyn',
-          'libexec',
-          'Microsoft.CodeAnalysis.Razor.Compiler.dll'
-        ),
-        '--razorDesignTimePath=' .. vim.fs.joinpath(
-          vim.fn.stdpath 'data' --[[@as string]],
-          'mason',
-          'packages',
-          'rzls',
-          'libexec',
-          'Targets',
-          'Microsoft.NET.Sdk.Razor.DesignTime.targets'
-        ),
       }
     },
     config = function(_, opts)
