@@ -13,77 +13,77 @@ local MacroRec = require("plugins.heirline.components.macro-recording")
 local TerminalName = require("plugins.heirline.components.terminal-name")
 
 local DefaultStatusLine = {
-  ViMode,
-  Space,
-  FileName,
-  Space,
-  MacroRec,
-  Align,
-  Git,
-  { Rule, condition = Git.condition },
-  Diagnostics,
-  { Rule, condition = Diagnostics.condition },
-  LspStatus
+    ViMode,
+    Space,
+    FileName,
+    Space,
+    MacroRec,
+    Align,
+    Git,
+    { Rule, condition = Git.condition },
+    Diagnostics,
+    { Rule, condition = Diagnostics.condition },
+    LspStatus
 }
 
 local EmptyFileStatusLine = {
-  ViMode,
-  Space,
-  FileName,
-  Space,
-  MacroRec,
-  Align,
-  Git,
-  condition = function()
-    return not conditions.buffer_matches({
-      bufname = { '.' }
-    })
-  end
+    ViMode,
+    Space,
+    FileName,
+    Space,
+    MacroRec,
+    Align,
+    Git,
+    condition = function()
+        return not conditions.buffer_matches({
+            bufname = { '.' }
+        })
+    end
 }
 
 local InactiveStatusLine = {
-  FileName,
-  condition = conditions.is_not_active,
+    FileName,
+    condition = conditions.is_not_active,
 }
 
 local TerminalStatusLine = {
-  ViMode,
-  Space,
-  TerminalName,
-  condition = function()
-    return conditions.buffer_matches({ buftype = { "terminal" } })
-  end
+    ViMode,
+    Space,
+    TerminalName,
+    condition = function()
+        return conditions.buffer_matches({ buftype = { "terminal" } })
+    end
 }
 
 
 return {
-  condition = function()
-    return not conditions.buffer_matches({
-      buftype = { 'nofile' } }
-    )
-  end,
-  hl = function()
-    local foreground = ""
-    if conditions.is_active() then
-      foreground = "status_line_fg"
-    else
-      foreground = "status_line_inactive_fg"
-    end
+    condition = function()
+        return not conditions.buffer_matches({
+            buftype = { 'nofile', 'quickfix' } }
+        )
+    end,
+    hl = function()
+        local foreground = ""
+        if conditions.is_active() then
+            foreground = "status_line_fg"
+        else
+            foreground = "status_line_inactive_fg"
+        end
 
-    local background = ""
-    if conditions.is_active() then
-      background = "status_line_bg"
-    else
-      background = "status_line_inactive_bg"
-    end
-    return {
-      fg = foreground,
-      bg = background
-    }
-  end,
-  fallthrough = false,
-  TerminalStatusLine,
-  InactiveStatusLine,
-  EmptyFileStatusLine,
-  DefaultStatusLine
+        local background = ""
+        if conditions.is_active() then
+            background = "status_line_bg"
+        else
+            background = "status_line_inactive_bg"
+        end
+        return {
+            fg = foreground,
+            bg = background
+        }
+    end,
+    fallthrough = false,
+    TerminalStatusLine,
+    InactiveStatusLine,
+    EmptyFileStatusLine,
+    DefaultStatusLine
 }
