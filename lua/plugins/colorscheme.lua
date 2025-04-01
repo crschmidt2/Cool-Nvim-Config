@@ -20,101 +20,111 @@
 
 return
 {
-  {
-    "zaldih/themery.nvim",
-    priority = 1000,
-    opts = {
-      themes = {
-        "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm",
-        "onedark",
-        "ayu",
-        "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave" },
-      livePreview = true
+    {
+        "zaldih/themery.nvim",
+        priority = 1000,
+        opts = {
+            themes = {
+                "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm",
+                "onedark",
+                "ayu",
+                "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave", "vscode" },
+            livePreview = true
+        },
+        config = function(_, opts)
+            vim.keymap.set('n', '<leader>cs', '<cmd>Themery<CR>')
+            require("themery").setup(opts)
+        end
     },
-    config = function(_, opts)
-      vim.keymap.set('n', '<leader>cs', '<cmd>Themery<CR>')
-      require("themery").setup(opts)
-    end
-  },
 
-  {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    priority = 999,
-    opts = {
-      style = "storm",
-      on_colors = function(c)
-        c.comment = "#7f88b3"
-      end,
+    {
+        "folke/tokyonight.nvim",
+        lazy = true,
+        priority = 999,
+        opts = {
+            style = "storm",
+            on_colors = function(c)
+                c.comment = "#7f88b3"
+            end,
 
-      on_highlights = function(h, c)
-        h.LineNr = { fg = c.comment }
-      end,
+            on_highlights = function(h, c)
+                h.LineNr = { fg = c.comment }
+            end,
+        },
+        config = true
     },
-    config = true
-  },
-  {
-    "navarasu/onedark.nvim",
-    lazy = true,
-    priority = 999,
-    opts = {
-      style = "darker",
-      colors = {
-        nontext = 'clear',
-      },
-      highlights = {
-        ["FloatBorder"] = { bg = '$nontext' },
-        ["NormalFloat"] = { bg = '$nontext' },
-        ["RenderMarkdownCode"] = { bg = '$nontext' },
-      },
+    {
+        "navarasu/onedark.nvim",
+        lazy = true,
+        priority = 999,
+        opts = {
+            style = "darker",
+            colors = {
+                nontext = 'clear',
+                tabBackground='#282c34',
+                tabFocusedText = '#a0a8b7',
+                tabUnfocusedText = '#535965'
+            },
+            highlights = {
+                ["FloatBorder"] = { bg = '$nontext' },
+                ["NormalFloat"] = { bg = '$nontext' },
+                ["RenderMarkdownCode"] = { bg = '$nontext' },
+                ["TabLineFill"] = { fg = '$tabFocusedText' },
+                ["TabLine"] = { fg = '$tabUnfocusedText' },
+            },
+        },
+        config = true,
     },
-    config = true,
-  },
-  {
-    "Shatur/neovim-ayu",
-    lazy = true,
-    priority = 999,
-    opts = {
-      mirage = true,
+    {
+        "Shatur/neovim-ayu",
+        lazy = true,
+        priority = 999,
+        opts = {
+            mirage = true,
+        },
+        config = function(_, opts)
+            require("ayu").setup(opts)
+        end
     },
-    config = function(_, opts)
-      require("ayu").setup(opts)
-    end
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    priority = 999,
-    lazy = true,
-    config = true,
-    opts = {
-      --EXAMPLE HIGHLIGHT CONFIG
-      colors = {
-        --     palette = {
-        --       -- change all usages of these colors
-        --       sumiInk0 = "#000000",
-        --       fujiWhite = "#FFFFFF",
-        --     },
-        theme = {
-          --       -- change specific usages for a certain theme, or for all of them
-          --       wave = {
-          --         ui = {
-          --           float = {
-          --             bg = "none",
-          --           },
-          --         },
-          --       },
-          --       dragon = {
-          --         syn = {
-          --           parameter = "yellow",
-          --         },
-          --       },
-          all = {
-            ui = {
-              bg_gutter = "none"
-            }
-          }
+    {
+        "rebelot/kanagawa.nvim",
+        priority = 999,
+        lazy = true,
+        config = true,
+        opts = {
+            --EXAMPLE HIGHLIGHT CONFIG
+            colors = {
+                --     palette = {
+                --       -- change all usages of these colors
+                --       sumiInk0 = "#000000",
+                --       fujiWhite = "#FFFFFF",
+                --     },
+                theme = {
+                    --       -- change specific usages for a certain theme, or for all of them
+                    --       wave = {
+                    --         ui = {
+                    --           float = {
+                    --             bg = "none",
+                    --           },
+                    --         },
+                    --       },
+                    --       dragon = {
+                    --         syn = {
+                    --           parameter = "yellow",
+                    --         },
+                    --       },
+                    all = {
+                        ui = {
+                            bg_gutter = "none"
+                        }
+                    }
+                }
+            },
         }
-      },
-    }
-  }
+    },
+    {
+        "Mofiqul/vscode.nvim",
+        lazy = true,
+        priority = 999,
+    },
 }
