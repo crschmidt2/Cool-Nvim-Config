@@ -61,7 +61,7 @@ return
             style = "darker",
             colors = {
                 nontext = 'clear',
-                tabBackground='#282c34',
+                tabBackground = '#282c34',
                 tabFocusedText = '#a0a8b7',
                 tabUnfocusedText = '#535965'
             },
