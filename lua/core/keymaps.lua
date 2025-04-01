@@ -40,12 +40,12 @@ end)
 -- The terminal emulator uses the shell in your $SHELL
 -- environment variable. On windows, you probably want to set this
 -- to powershell.
-local termNormalMode = [[<C-\><C-n>]]
+-- local termNormalMode = [[<C-\><C-n>]]
 local termWinCmd = function(wincmd)
     vim.api.nvim_input(termNormalMode)
     vim.cmd.wincmd(wincmd)
 end
-vim.keymap.set('t', [[<ESC>]], termNormalMode)
+-- vim.keymap.set('t', [[<ESC>]], termNormalMode)
 vim.keymap.set('t', '<C-h>', function() termWinCmd('h') end)
 vim.keymap.set('t', '<C-j>', function() termWinCmd('j') end)
 vim.keymap.set('t', '<C-k>', function() termWinCmd('k') end)
