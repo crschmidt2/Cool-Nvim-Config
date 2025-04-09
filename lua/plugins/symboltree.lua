@@ -1,8 +1,5 @@
 return {
   {
-    -- THOUGHT THIS ONE WOULD BE COOL BUT THE HIGHLIGHT GROUPS WERE ROUGH
-    -- ... nevermind i figured it out
-
     "hedyhli/outline.nvim",
     keys = {
       { "<C-c>", "<cmd>Outline<CR>", desc = "Open symbol tree" }

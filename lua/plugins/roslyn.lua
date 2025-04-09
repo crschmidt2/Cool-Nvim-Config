@@ -41,21 +41,8 @@ return {
                     },
                 },
             },
-            -- exe = {
-            --     "dotnet",
-            --     roslynMasonPath
-            -- },
-            -- args = {
-            --     '--logLevel=Information',
-            --     '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-            -- }
         },
         config = function(_, opts)
-            -- TestRoslyn = function()
-            --     return "dotnet " ..
-            --     roslynMasonPath .. " --logLevel=Information " ..
-            --     "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path())
-            -- end
             require('roslyn').setup(opts)
         end
     }

@@ -2,18 +2,14 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    -- build = function() vim.fn["mkdp#util#install"]() end,
     build = "cd app && yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    ft = { "markdown" },
+    ft = { "markdown", "help" },
     keys = {
       { '<leader>ma', '<cmd>MarkdownPreviewToggle<CR>', desc = 'Toggle markdown preview' },
     },
-    -- config = function()
-    --   -- vim.keymap.set('', '<leader>ma', '<cmd>MarkdownPreviewToggle<CR>')
-    -- end
   },
   {
     'Kicamon/markdown-table-mode.nvim',

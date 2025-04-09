@@ -1,31 +1,48 @@
---VUE 3 SETUP
+--Hybrid Typescript + Vue config. See vuejs/language-tools nvim section for explanation
+--Typescript handles <script> section, Volar handles Markup + CSS. Typescript vue plugin lets them communicate.
 
-local volarPath = vim.fn.stdpath("data") ..
+local typescript_ls_path = vim.fn.stdpath("data") ..
+    "/mason/bin/typescript-language-server"
+
+local typescript_lib_path = vim.fn.stdpath("data") ..
     "/mason/packages/typescript-language-server/node_modules/typescript/lib"
 
-require'lspconfig'.volar.setup{
-  init_options = {
-    typescript = {
-      tsdk = volarPath
-    }
-  }
+local volar_ls_path = vim.fn.stdpath("data") ..
+    "/mason/bin/vue-language-server"
+
+local ts_vue_plugin_path = vim.fn.stdpath("data") ..
+    "/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
+require('lspconfig').ts_ls.setup {
+    init_options = {
+        hostInfo = "neovim",
+        plugins = {
+            {
+                name = '@vue/typescript-plugin',
+                location = ts_vue_plugin_path,
+                languages = { 'vue' },
+            },
+        },
+    },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'rbql' },
+    cmd = { typescript_ls_path, "--stdio" }
 }
 
---TYPESCRIPT SETUP
 
-local vue_language_server_path = vim.fn.stdpath("data") ..
-    "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require 'lspconfig'.ts_ls.setup {
-  capabilities = capabilities,
-  init_options = {
-    plugins = {
-      {
-        name = '@vue/typescript-plugin',
-        location = vue_language_server_path,
-        languages = { 'vue', 'typescript', 'javascript' },
-      },
+require('lspconfig').volar.setup {
+    cmd = { volar_ls_path, "--stdio" },
+    init_options = {
+        typescript = {
+            tsdk = typescript_lib_path
+        }
     },
-  },
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'rbql' },
+    settings = {
+        vue = {
+            complete = {
+                casing = {
+                    tags = "autoKebab"
+                }
+            }
+        }
+    }
 }
