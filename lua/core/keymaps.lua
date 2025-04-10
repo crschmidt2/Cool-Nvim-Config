@@ -1,5 +1,3 @@
-local term = require("core.utils.terminal")
-
 --LEADER
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -50,8 +48,3 @@ vim.keymap.set('t', '<C-h>', function() termWinCmd('h') end)
 vim.keymap.set('t', '<C-j>', function() termWinCmd('j') end)
 vim.keymap.set('t', '<C-k>', function() termWinCmd('k') end)
 vim.keymap.set('t', '<C-l>', function() termWinCmd('l') end)
-
-vim.keymap.set("n", "<leader>t", function()
-    term.toggle_floating_terminal()
-end
-)
