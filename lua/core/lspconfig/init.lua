@@ -14,3 +14,4 @@ require("core.lspconfig.arduinoserver")
 -- require("core.lspconfig.vue2server")
 
 require("core.lspconfig.rustserver")
+require("core.lspconfig.latex")
