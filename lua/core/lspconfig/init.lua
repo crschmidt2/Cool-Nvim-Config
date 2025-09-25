@@ -1,1 +1,1 @@
-require("core.lspconfig.typescriptserver")
+require("core.lspconfig.typescript-and-vue")

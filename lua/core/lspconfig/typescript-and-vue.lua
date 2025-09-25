@@ -14,7 +14,7 @@ local volar_ls_path = vim.fn.stdpath("data") ..
 local ts_vue_plugin_path = vim.fn.stdpath("data") ..
     "/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
-require('lspconfig').ts_ls.setup {
+vim.lsp.config('ts_ls', {
     init_options = {
         hostInfo = "neovim",
         plugins = {
@@ -28,10 +28,10 @@ require('lspconfig').ts_ls.setup {
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'rbql' },
     cmd = { typescript_ls_path, "--stdio" },
     capabilities = capabilities
-}
+})
 
 
-require('lspconfig').volar.setup {
+vim.lsp.config('vue_ls', {
     cmd = { volar_ls_path, "--stdio" },
     init_options = {
         typescript = {
@@ -48,4 +48,6 @@ require('lspconfig').volar.setup {
         }
     },
     capabilities = capabilities
-}
+})
+
+vim.lsp.enable({'ts_ls', 'vue_ls'})
