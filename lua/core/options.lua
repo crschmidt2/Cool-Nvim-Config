@@ -37,6 +37,9 @@ vim.opt.wrap = false
 --COLOR
 vim.opt.termguicolors = true
 
+--FLOATING WINDOW
+vim.opt.winborder = 'rounded'
+
 --FILE EXPLORER
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -46,6 +49,7 @@ vim.opt.ignorecase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.inccommand = ""
+
 
 --SCROLLING
 vim.opt.scrolloff = 4

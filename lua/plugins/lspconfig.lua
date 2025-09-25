@@ -20,12 +20,6 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-            --     vim.lsp.handlers.hover, {
-            --         border = "single",
-            --     }
-            -- )
-
             vim.api.nvim_create_autocmd('LspAttach', {
                 callback = function(ev)
                     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -42,5 +36,4 @@ return {
             })
         end
     },
---
 }
