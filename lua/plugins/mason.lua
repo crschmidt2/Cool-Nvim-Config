@@ -23,7 +23,9 @@ return {
                 exclude = {
                     "ts_ls",
                     "vtsls",
-                    "vue_ls"
+                    "vue_ls",
+                    --LSP Setup handled by roslyn.nvim
+                    "roslyn"
                 }
             }
         },
