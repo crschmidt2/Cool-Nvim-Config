@@ -36,7 +36,7 @@ return {
         },
         config = function(_, opts)
             require("mason-lspconfig").setup(opts)
-            require("core.lspconfig")
+            require("core.lsp")
         end
     }
 }
