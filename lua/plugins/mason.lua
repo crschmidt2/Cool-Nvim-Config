@@ -19,8 +19,9 @@ return {
         "mason-org/mason-lspconfig.nvim",
         opts = {
             automatic_enable = {
-                ensure_installed = { "lua_ls", "rust_analyzer", "vtsls", "vue_ls" },
+                ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "vue_ls" },
                 exclude = {
+                    "lua_ls",
                     "ts_ls",
                     "vtsls",
                     "vue_ls",
