@@ -1,6 +1,7 @@
 local dap = require('dap')
-local net_core_bd_path = vim.fn.stdpath("data") ..
-    "/mason/bin/netcoredbg"
+local utils = require('lib.utils')
+
+local net_core_bd_path = utils.get_mason_bin_file_path('netcoredbg')
 
 --Hacky way to get nvim-dap working with Mason
 local osName = vim.loop.os_uname().sysname

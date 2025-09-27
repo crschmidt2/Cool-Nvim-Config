@@ -1,5 +1,6 @@
-local lua_ls_path = vim.fn.stdpath("data") ..
-    "/mason/bin/lua-language-server"
+local utils = require('lib.utils')
+
+local lua_ls_path = utils.get_mason_bin_file_path('lua-language-server')
 
   vim.lsp.config('lua_ls', {
     cmd = { lua_ls_path },
