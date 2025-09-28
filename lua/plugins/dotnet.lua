@@ -11,12 +11,12 @@ return {
             "GustavEikaas/easy-dotnet.nvim",
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
             opts = {
-                debugger = {
-                    bin_path = netcoredbg_path,
-                    mappings = {
-                        open_variable_viewer = { lhs = "L", desc = "open variable viewer" },
-                    },
-                }
+                -- debugger = {
+                --     bin_path = netcoredbg_path,
+                --     mappings = {
+                --         open_variable_viewer = { lhs = "<leader>dl", desc = "open variable viewer" },
+                --     },
+                -- }
             },
             config = function(_, opts)
                 require("easy-dotnet").setup(opts)
