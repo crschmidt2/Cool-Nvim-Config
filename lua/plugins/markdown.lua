@@ -1,16 +1,4 @@
 return {
-    -- {
-    --   "iamcco/markdown-preview.nvim",
-    --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    --   build = "cd app && yarn install",
-    --   init = function()
-    --     vim.g.mkdp_filetypes = { "markdown" }
-    --   end,
-    --   ft = { "markdown", "help" },
-    --   keys = {
-    --     { '<leader>ma', '<cmd>MarkdownPreviewToggle<CR>', desc = 'Toggle markdown preview' },
-    --   },
-    -- },
     {
         "frabjous/knap",
         ft = { "markdown", "plaintex" },
@@ -52,25 +40,52 @@ return {
             require('markdown-table-mode').setup()
         end
     },
-    --BOTH OF THESE ARE INLINE RENDERERS FOR MARKDOWN. I AM NOT SURE WHICH ONE I LIKE MORE :u
-    -- {
-    --   "OXY2DEV/markview.nvim",
-    --   lazy = false, -- Recommended
-    --   -- ft = "markdown" -- If you decide to lazy-load anyway
-    --
-    --   dependencies = {
-    --     -- You will not need this if you installed the
-    --     -- parsers manually
-    --     -- Or if the parsers are in your $RUNTIMEPATH
-    --     "nvim-treesitter/nvim-treesitter",
-    --
-    --     "nvim-tree/nvim-web-devicons"
-    --   }
-    -- },
     {
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {},
         ft = { "markdown" },
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    },
+    {
+        "gaoDean/autolist.nvim",
+        ft = {
+            "markdown",
+            "text",
+            "tex",
+            "plaintex",
+            "norg",
+        },
+        config = function()
+            require("autolist").setup()
+
+            vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
+            vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
+            vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
+            vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
+            vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
+            vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
+            vim.keymap.set("n", "<leader>r", "<cmd>AutolistRecalculate<cr>")
+
+            -- cycle list types with dot-repeat
+            vim.keymap.set("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true })
+            vim.keymap.set("n", "<leader>cp", require("autolist").cycle_prev_dr, { expr = true })
+
+            -- if you don't want dot-repeat
+            -- vim.keymap.set("n", "<leader>cn", "<cmd>AutolistCycleNext<cr>")
+            -- vim.keymap.set("n", "<leader>cp", "<cmd>AutolistCycleNext<cr>")
+
+            -- functions to recalculate list on edit
+            vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
+            vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
+            vim.keymap.set("n", "dd", "dd<cmd>AutolistRecalculate<cr>")
+            vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
+
+            vim.api.nvim_create_autocmd('InsertLeave', {
+                pattern = { '*.md' },
+                callback = function()
+                    vim.api.nvim_command("AutolistRecalculate")
+                end
+            })
+        end,
     },
 }

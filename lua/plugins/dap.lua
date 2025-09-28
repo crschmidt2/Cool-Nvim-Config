@@ -2,7 +2,6 @@ return {
     {
         'mfussenegger/nvim-dap',
         keys = {
-            { '<F5>',      '<cmd>DapContinue<CR>',         desc = 'Start/continue debugging' },
             { '<C-N>',      '<cmd>DapContinue<CR>',         desc = 'Start/continue debugging' },
             { '<F10>',     '<cmd>DapStepOver<CR>',         desc = 'Step over' },
             { '<C-M>',     '<cmd>DapStepOver<CR>',         desc = 'Step over' },
@@ -37,7 +36,6 @@ return {
             local dap = require('dap')
 
             --Keymaps
-            vim.keymap.set("n", "<F5>", dap.continue, { desc = "Start/continue debugging" })
             vim.keymap.set("n", "<C-N>", dap.continue, { desc = "Start/continue debugging" })
             vim.keymap.del("n", "<CR>")
             vim.keymap.set("n", "q", function()
