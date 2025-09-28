@@ -1,13 +1,13 @@
 --Hybrid Typescript + Vue config. See vuejs/language-tools nvim section for explanation
 --Typescript handles <script> section, Volar handles Markup + CSS. Typescript vue plugin lets them communicate.
-local typescript_ls_path = vim.fn.stdpath("data") ..
-    "/mason/bin/typescript-language-server"
+local utils = require('lib.utils')
+
+local typescript_ls_path = utils.get_mason_bin_file_path('typescript-language-server')
 
 local typescript_lib_path = vim.fn.stdpath("data") ..
     "/mason/packages/typescript-language-server/node_modules/typescript/lib"
 
-local vue_ls_path = vim.fn.stdpath("data") ..
-    "/mason/bin/vue-language-server"
+local vue_ls_path  = utils.get_mason_bin_file_path('vue-language-server')
 
 local ts_vue_plugin_path = vim.fn.stdpath("data") ..
     "/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
