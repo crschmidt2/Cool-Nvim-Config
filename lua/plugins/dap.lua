@@ -2,13 +2,8 @@ return {
     {
         'mfussenegger/nvim-dap',
         keys = {
-            {
-                '<F5>',
-                function()
-                    require 'dap'.continue()
-                end,
-                desc = 'Start/continue debugging'
-            },
+            { '<F5>',      '<cmd>DapContinue<CR>',         desc = 'Start/continue debugging' },
+            { '<C-N>',      '<cmd>DapContinue<CR>',         desc = 'Start/continue debugging' },
             { '<F10>',     '<cmd>DapStepOver<CR>',         desc = 'Step over' },
             { '<C-M>',     '<cmd>DapStepOver<CR>',         desc = 'Step over' },
             { '<F11>',     '<cmd>DapStepInto<CR>',         desc = 'Step into' },
@@ -16,13 +11,6 @@ return {
             { '<F12>',     '<cmd>DapStepOut<CR>',          desc = 'Step out' },
             { '<C-,>',     '<cmd>DapStepOut<CR>',          desc = 'Step out' },
             { '<leader>d', '<cmd>DapToggleBreakpoint<CR>', desc = 'Toggle breakpoint' },
-            {
-                '<leader>dk',
-                function()
-                    require 'dap'.goto_()
-                end,
-                desc = 'Run to cursor'
-            },
         },
         cmd = {
             'DapNew',
@@ -54,9 +42,7 @@ return {
             vim.keymap.del("n", "<CR>")
             vim.keymap.set("n", "q", function()
                 dap.terminate()
-                dap.clear_breakpoints()
             end, { desc = "Terminate and clear breakpoints" })
-
         end
     },
     {

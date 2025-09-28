@@ -19,7 +19,10 @@ return {
             }
         end,
         opts = {
-            config = {
+            silent = true
+        },
+        config = function(_, opts)
+            vim.lsp.config("roslyn", {
                 settings = {
                     ['csharp|inlay_hints'] = {
                         csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -40,9 +43,8 @@ return {
                         dotnet_enable_references_code_lens = true,
                     },
                 },
-            },
-        },
-        config = function(_, opts)
+            })
+
             require('roslyn').setup(opts)
         end
     }

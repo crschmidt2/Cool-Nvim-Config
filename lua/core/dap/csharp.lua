@@ -2,6 +2,7 @@ local dap = require('dap')
 local utils = require('lib.utils')
 
 local function get_net_core_bd_path()
+    --BIG STINKY HACK COMING UP
     if osName == 'Windows_NT' then
         local net_core_bd_path = vim.fn.stdpath('data') ..
         '\\mason\\' .. 'packages\\netcoredbg\\netcoredbg\\netcoredbg.exe'
