@@ -1,17 +1,20 @@
 local dap = require('dap')
 local utils = require('lib.utils')
 
-local net_core_bd_path = utils.get_mason_bin_file_path('netcoredbg')
+local function get_net_core_bd_path()
+    if osName == 'Windows_NT' then
+        local net_core_bd_path = vim.fn.stdpath('data') ..
+        '\\mason\\' .. 'packages\\netcoredbg\\netcoredbg\\netcoredbg.exe'
+        return net_core_bd_path
+    end
 
---Hacky way to get nvim-dap working with Mason
-local osName = vim.loop.os_uname().sysname
-if osName == 'Windows_NT' then
-    net_core_bd_path = net_core_bd_path .. '.cmd'
+    local net_core_bd_path = utils.get_mason_bin_file_path('netcoredbg')
+    return net_core_bd_path
 end
 
 dap.adapters.coreclr = {
     type = 'executable',
-    command = net_core_bd_path,
+    command = get_net_core_bd_path(),
     args = { '--interpreter=vscode' }
 }
 
