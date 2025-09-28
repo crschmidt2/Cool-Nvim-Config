@@ -1,0 +1,49 @@
+--Hybrid Typescript + Vue config. See vuejs/language-tools nvim section for explanation
+--Typescript handles <script> section, Volar handles Markup + CSS. Typescript vue plugin lets them communicate.
+local utils = require('lib.utils')
+
+local typescript_ls_path = utils.get_mason_bin_file_path('typescript-language-server')
+
+local typescript_lib_path = vim.fn.stdpath("data") ..
+    "/mason/packages/typescript-language-server/node_modules/typescript/lib"
+
+local vue_ls_path  = utils.get_mason_bin_file_path('vue-language-server')
+
+local ts_vue_plugin_path = vim.fn.stdpath("data") ..
+    "/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
+vim.lsp.config('ts_ls', {
+    init_options = {
+        hostInfo = "neovim",
+        plugins = {
+            {
+                name = '@vue/typescript-plugin',
+                location = ts_vue_plugin_path,
+                languages = { 'vue' },
+            },
+        },
+    },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'rbql' },
+    cmd = { typescript_ls_path, "--stdio" },
+})
+
+
+vim.lsp.config('vue_ls', {
+    cmd = { vue_ls_path, "--stdio" },
+    init_options = {
+        typescript = {
+            tsdk = typescript_lib_path
+        }
+    },
+    settings = {
+        vue = {
+            complete = {
+                casing = {
+                    tags = "autoKebab"
+                }
+            }
+        }
+    },
+})
+
+vim.lsp.enable({ 'ts_ls', 'vue_ls' })
