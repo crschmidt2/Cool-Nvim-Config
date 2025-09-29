@@ -17,6 +17,7 @@ return {
     --Mason LSPConfig
     {
         "mason-org/mason-lspconfig.nvim",
+        event = { "BufReadPre", "BufNewFile" },
         opts = {
             automatic_enable = {
                 ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "vue_ls" },

@@ -10,6 +10,7 @@ return {
         {
             "GustavEikaas/easy-dotnet.nvim",
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
+            ft = { "cs", "sln", "csproj" },
             opts = {
                 -- debugger = {
                 --     bin_path = netcoredbg_path,
