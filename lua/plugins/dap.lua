@@ -1,46 +1,26 @@
-local lazyKeys = {
-    { '<C-N>',     '<cmd>DapContinue<CR>',         desc = 'Start/continue debugging' },
-    { '<F10>',     '<cmd>DapStepOver<CR>',         desc = 'Step over' },
-    { '<C-M>',     '<cmd>DapStepOver<CR>',         desc = 'Step over' },
-    { '<F11>',     '<cmd>DapStepInto<CR>',         desc = 'Step into' },
-    { '<C-.>',     '<cmd>DapStepInto<CR>',         desc = 'Step into' },
-    { '<F12>',     '<cmd>DapStepOut<CR>',          desc = 'Step out' },
-    { '<C-,>',     '<cmd>DapStepOut<CR>',          desc = 'Step out' },
-    { '<leader>d', '<cmd>DapToggleBreakpoint<CR>', desc = 'Toggle breakpoint' },
-}
-
-local lazyCmds = {
-    'DapNew',
-    'DapPause',
-    'DapShowLog',
-    'DapStepOut',
-    'DapContinue',
-    'DapStepInto',
-    'DapStepOver',
-    'DapTerminate',
-    'DapDisconnect',
-    'DapToggleRepl',
-    'DapSetLogLevel',
-    'DapRestartFrame',
-    'DapClearBreakpoints',
-    'DapToggleBreakpoint',
-    'DapEval'
-}
-
 return {
     {
         'mfussenegger/nvim-dap',
-        keys = lazyKeys,
-        cmd = lazyCmds,
+        dependencies = { 'rcarriga/nvim-dap-ui' },
+        keys = {
+            { '<C-N>',     function() require("dap").continue() end,          desc = 'Start/continue debugging' },
+            { '<leader>d', function() require("dap").toggle_breakpoint() end, desc = 'Toggle breakpoint' },
+        },
         config = function()
             -- .NET specific setup using `easy-dotnet`
-            -- require("easy-dotnet.netcoredbg").register_dap_variables_viewer()
+            require("easy-dotnet.netcoredbg").register_dap_variables_viewer()
 
             require('core.dap')
             local dap = require('dap')
 
             --Keymaps
             vim.keymap.set("n", "<C-N>", dap.continue, { desc = "Start/continue debugging" })
+            vim.keymap.set("n", "<C-M>", dap.step_over, { desc = "Step over" })
+            vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
+            vim.keymap.set("n", "C-.", dap.step_into, { desc = "Step into" })
+            vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
+            vim.keymap.set("n", "<C-,>", dap.step_out, { desc = "Step out" })
+            vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
             vim.keymap.del("n", "<CR>")
             vim.keymap.set("n", "q", function()
                 dap.terminate()
@@ -49,9 +29,9 @@ return {
     },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-        keys = lazyKeys,
-        cmd = lazyCmds,
+        dependencies = { "nvim-neotest/nvim-nio" },
+        lazy = true,
+        opts = {},
         config = function(_, opts)
             require('dapui').setup(opts)
 

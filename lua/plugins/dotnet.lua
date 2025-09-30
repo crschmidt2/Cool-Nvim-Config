@@ -12,12 +12,12 @@ return {
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
             ft = { "cs", "sln", "csproj" },
             opts = {
-                -- debugger = {
-                --     bin_path = netcoredbg_path,
-                --     mappings = {
-                --         open_variable_viewer = { lhs = "<leader>dl", desc = "open variable viewer" },
-                --     },
-                -- }
+                debugger = {
+                    bin_path = netcoredbg_path,
+                    -- mappings = {
+                    --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+                    -- },
+                }
             },
             config = function(_, opts)
                 require("easy-dotnet").setup(opts)
