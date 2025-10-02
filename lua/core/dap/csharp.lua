@@ -20,30 +20,3 @@ dap.adapters.coreclr = {
     command = get_net_core_bd_path(),
     args = { '--interpreter=vscode' }
 }
-
--- dap.configurations.cs = {
---     {
---         type = "coreclr",
---         name = "Launch Console/Wsv",
---         request = "launch",
---         program = function()
---             local dll_path = require('easy-dotnet').get_debug_dll(true).dll_path
---
---             return vim.fn.input('Path to dll: ', dll_path, 'file')
---         end,
---     },
--- }
-
-
---use (Get-Process dotnet | Sort-Object StartTime -Descending)[0].Id to get most recent ID on powershell
-
--- dap.configurations.cs = {
---   {
---     type = 'coreclrattach',
---     name = 'Attach to Kestrel',
---     request = 'attach',
---     processId = function()
---       return vim.fn.input('PID: ', get_most_recent_dotnet_pid())
---     end,
---   },
--- }

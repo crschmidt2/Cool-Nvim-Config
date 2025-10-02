@@ -12,6 +12,11 @@ return {
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
             ft = { "cs", "sln", "csproj" },
             opts = {
+                lsp = {
+                    enabled = false,
+                    roslynator_enabled = true,
+                    analyzer_assemblies = {},
+                },
                 debugger = {
                     bin_path = netcoredbg_path,
                     -- mappings = {
