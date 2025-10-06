@@ -4,6 +4,8 @@
 --jq
 local utils = require('lib.utils')
 local netcoredbg_path = utils.get_mason_bin_file_path('netcoredbg')
+local roslyn_path = vim.fn.stdpath("data") ..
+    "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
 
 return {
     {
@@ -14,8 +16,9 @@ return {
             opts = {
                 lsp = {
                     enabled = false,
-                    roslynator_enabled = true,
-                    analyzer_assemblies = {},
+                    -- roslynator_enabled = false,
+                    -- bin_path = roslyn_path,
+                    -- analyzer_assemblies = {},
                 },
                 debugger = {
                     bin_path = netcoredbg_path,

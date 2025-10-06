@@ -1,7 +1,7 @@
 --Plugin for configuring roslyn language server for C#
 
-local roslynMasonPath = vim.fn.stdpath("data") ..
-    "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
+-- local roslyn_path = vim.fn.stdpath("data") ..
+--     "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
 
 return {
     {
@@ -19,7 +19,8 @@ return {
             }
         end,
         opts = {
-            silent = true
+            silent = false,
+            filewatching = "auto"
         },
         config = function(_, opts)
             vim.lsp.config("roslyn", {
