@@ -74,3 +74,6 @@ if osName == 'Windows_NT' then
     vim.o.shellquote = ''
     vim.o.shellxquote = ''
 end
+
+--SESSIONS
+vim.opt.sessionoptions:append({ "localoptions" })
