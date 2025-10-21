@@ -2,7 +2,7 @@ return {
     {
         'akinsho/toggleterm.nvim',
         version = "*",
-        keys = { { '<C-o>', "<CMD>ToggleTerm<CR>", desc = "Open floating terminal", mode = { 'n', 'v', 't' } } },
+        keys = { { '<C-y>', "<CMD>ToggleTerm<CR>", desc = "Open floating terminal", mode = { 'n', 'v', 't' } } },
         cmd = { 'ToggleTerm', 'ToggleTermToggleAll', 'TermExec', 'TermNew', 'TermSelect' },
         opts = {
             direction = 'float'
