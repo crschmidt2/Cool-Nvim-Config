@@ -1,8 +1,7 @@
 --CLIPBOARD
-vim.opt.clipboard = "unnamedplus"
-
---Remove comment continuation on newline
---DEFAULT: jcroql (see :help fo-table)
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
 
 --This stops newlines from continuing comments. Not sure why the vim.opt.formatoptions is not working
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -36,6 +35,9 @@ vim.opt.wrap = false
 
 --COLOR
 vim.opt.termguicolors = true
+
+--FONT
+vim.g.have_nerd_font = true
 
 --FLOATING WINDOW
 vim.opt.winborder = 'rounded'

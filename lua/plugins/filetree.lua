@@ -14,6 +14,8 @@ local my_on_attach = function(bufnr)
         local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
         require("easy-dotnet").create_new_item(path)
     end, opts('Create file from dotnet template'))
+
+    vim.keymap.set("n", "?",     api.tree.toggle_help,                  opts("Help"))
 end
 
 return {
@@ -25,7 +27,9 @@ return {
 
         opts = {
             view = {
-                side = 'right'
+                side = 'right',
+                number = true,
+                relativenumber = true
             },
             update_focused_file = {
                 enable = true,

@@ -49,3 +49,5 @@ vim.keymap.set('t', '<C-h>', function() termWinCmd('h') end)
 vim.keymap.set('t', '<C-j>', function() termWinCmd('j') end)
 vim.keymap.set('t', '<C-k>', function() termWinCmd('k') end)
 vim.keymap.set('t', '<C-l>', function() termWinCmd('l') end)
+
+vim.keymap.set('n', '<leader>y', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
