@@ -21,4 +21,13 @@ M.get_mason_bin_file_path = function(languageServerName)
     return masonBinPath
 end
 
+---Returns a boolean for whether Neovim is running on a windows machine
+---@return boolean isOnWindows
+M.is_on_windows = function()
+    local osName = vim.loop.os_uname().sysname
+
+    if osName == "Windows_NT" then return true end
+    return false
+end
+
 return M
