@@ -14,6 +14,7 @@ return {
             end,
             opts = {
                 nes = {
+                    enabled = false,
                     move_count_threshold = 3,
                 }
             },
