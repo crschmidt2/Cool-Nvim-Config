@@ -32,7 +32,7 @@ return {
                             fallback()
                         end
                     end,
-                    ['<C-l>'] = cmp.mapping.confirm({ select = false }),
+                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
@@ -83,9 +83,57 @@ return {
             })
 
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local handlers = require('nvim-autopairs.completion.handlers')
+            local autoutils = require('nvim-autopairs.utils')
+
             cmp.event:on(
                 'confirm_done',
-                cmp_autopairs.on_confirm_done()
+                cmp_autopairs.on_confirm_done({
+                    filetypes = {
+                        ["*"] = {
+                            ["("] = {
+                                kind = {
+                                    cmp.lsp.CompletionItemKind.Function,
+                                    cmp.lsp.CompletionItemKind.Method,
+                                },
+                                handler = handlers["*"]
+                            }
+                        },
+                        ["vue"] = {
+                            ["("] = {
+                                kind = {
+                                    cmp.lsp.CompletionItemKind.Function,
+                                    cmp.lsp.CompletionItemKind.Method,
+                                },
+                                handler = function(char, item, bufnr, rules, commit_character)
+                                    --Vuetify elements are handled as functions for some reason. This will close the tag.
+                                    if string.match(item.label, ('^v%-')) then
+                                        local line = autoutils.text_get_current_line(bufnr)
+                                        local _, col = autoutils.get_cursor()
+                                        local char_before, char_after = autoutils.text_cusor_line(line, col, 1, 1, false)
+                                        local length = #item.label
+
+                                        if char == '' or char_before == char or char_after == char
+                                            or (item.data and item.data.funcParensDisabled)
+                                            or (item.textEdit and item.textEdit.newText and item.textEdit.newText:match "[%(%[%$]")
+                                            or (item.insertText and item.insertText:match "[%(%[%$]")
+                                        then
+                                            return
+                                        end
+
+                                        autoutils.feed('>')
+                                        autoutils.feed(autoutils.key.right, 1)
+                                        autoutils.feed('</' .. item.label .. '>')
+                                        autoutils.feed(autoutils.key.right, length + 3)
+                                        return
+                                    end
+
+                                    handlers["*"](char, item, bufnr, rules)
+                                end
+                            }
+                        }
+                    }
+                })
             )
 
             --Keep copilot suggestions closed when cmp menu open
