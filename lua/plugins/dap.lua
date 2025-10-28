@@ -21,7 +21,7 @@ return {
             vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
             vim.keymap.set("n", "<C-,>", dap.step_out, { desc = "Step out" })
             vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
-            vim.keymap.del("n", "<CR>")
+            -- vim.keymap.del("n", "<CR>")
             vim.keymap.set("n", "q", function()
                 dap.terminate()
             end, { desc = "Terminate and clear breakpoints" })

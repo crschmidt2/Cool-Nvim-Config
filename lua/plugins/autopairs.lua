@@ -2,14 +2,14 @@ return {
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        config = function(_, _)
+        opts = {
+            map_cr = true,
+        },
+        config = function(_, opts)
             local npairs = require("nvim-autopairs")
             local Rule = require("nvim-autopairs.rule")
 
-            npairs.setup({
-                check_ts = true,
-            })
-
+            npairs.setup(opts)
 
             --Rust closures
             npairs.add_rules({
@@ -26,6 +26,14 @@ return {
             })
         end
     },
+    -- {
+    --     'nvim-mini/mini.pairs',
+    --     version = false,
+    --     opts = {},
+    --     config = function()
+    --         require('mini.pairs').setup()
+    --     end
+    -- },
     {
         'windwp/nvim-ts-autotag',
         event = { "BufReadPre", "BufNewFile" },
