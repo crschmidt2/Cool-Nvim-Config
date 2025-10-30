@@ -35,12 +35,16 @@ return {
             require('dapui').setup(opts)
 
             local dap, dapui = require("dap"), require("dapui")
-            dap.listeners.before.attach.dapui_config = function()
-                dapui.open()
-            end
-            dap.listeners.before.launch.dapui_config = function()
-                dapui.open()
-            end
+            vim.keymap.set("n", "<leader>du", function()
+                -- dapui.toggle({layout = } )
+                dapui.toggle({ layout = 1 })
+            end, { desc = "Toggle DAP UI" })
+            -- dap.listeners.before.attach.dapui_config = function()
+            --     dapui.open()
+            -- end
+            -- dap.listeners.before.launch.dapui_config = function()
+            --     dapui.open()
+            -- end
             dap.listeners.before.event_terminated.dapui_config = function()
                 dapui.close()
             end

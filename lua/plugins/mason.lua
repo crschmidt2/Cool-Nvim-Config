@@ -20,7 +20,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             automatic_enable = {
-                ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "vue_ls" },
+                ensure_installed = { "lua_ls", "rust_analyzer", "html_lsp", "css_lsp", "ts_ls", "vue_ls", "js_debug_adapter", "netcoredbg" },
                 exclude = {
                     "lua_ls",
                     "ts_ls",
@@ -32,7 +32,7 @@ return {
             }
         },
         dependencies = {
-            { "mason-org/mason.nvim", opts = {} },
+            "mason-org/mason.nvim",
             "neovim/nvim-lspconfig",
         },
         config = function(_, opts)

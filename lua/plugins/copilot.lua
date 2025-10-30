@@ -2,9 +2,9 @@ local utils = require("lib.utils")
 
 return {
     "zbirenbaum/copilot.lua",
-    enabled = function ()
-        return not utils.is_on_windows()
-    end,
+    -- enabled = function ()
+    --     return not utils.is_on_windows()
+    -- end,
     dependencies = {
         {
             "copilotlsp-nvim/copilot-lsp",
@@ -49,7 +49,7 @@ return {
             },
         },
         nes       = {
-            enabled = true,
+            enabled = false,
             keymap = {
                 accept_and_goto = "<leader>ac",
                 accept = false,
