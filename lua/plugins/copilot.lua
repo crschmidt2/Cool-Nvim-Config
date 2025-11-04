@@ -1,29 +1,24 @@
-local utils = require("lib.utils")
-
 return {
     "zbirenbaum/copilot.lua",
-    -- enabled = function ()
-    --     return not utils.is_on_windows()
-    -- end,
-    dependencies = {
-        {
-            "copilotlsp-nvim/copilot-lsp",
-            event = "VeryLazy",
-            init = function()
-                vim.g.copilot_nes_debounce = 500
-            end,
-            opts = {
-                nes = {
-                    enabled = false,
-                    move_count_threshold = 3,
-                }
-            },
-            config = function(_, opts)
-                require('copilot-lsp').setup(opts)
-            end
-        }
-    },
-    event = "VeryLazy",
+    lazy = true,
+    -- dependencies = {
+    --     {
+    --         "copilotlsp-nvim/copilot-lsp",
+    --         lazy = true,
+    --         init = function()
+    --             vim.g.copilot_nes_debounce = 500
+    --         end,
+    --         opts = {
+    --             nes = {
+    --                 enabled = false,
+    --                 move_count_threshold = 3,
+    --             }
+    --         },
+    --         config = function(_, opts)
+    --             require('copilot-lsp').setup(opts)
+    --         end
+    --     }
+    -- },
     keys = {
         { '<leader>aa', '<cmd>Copilot panel toggle<CR>', desc = 'Toggle copilot panel' },
     },

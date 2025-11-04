@@ -9,7 +9,6 @@ return {
         build = vim.fn.has("win32") ~= 0
             and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
             or "make",
-        event = "VeryLazy",
         version = false,
         keys = {
             { '<leader>as', '<cmd>AvanteAsk<CR>',     desc = 'Open avante ask window' },
@@ -19,7 +18,7 @@ return {
         ---@module 'avante'
         ---@type avante.Config
         opts = {
-            mode = "legacy", --Asks before making agentic changes. Change to "agentic" for automatic agent stuff
+            mode = "agentic", --legacy or agentic
             instructions_file = "avante.md",
             provider = "copilot",
             mappings = {
