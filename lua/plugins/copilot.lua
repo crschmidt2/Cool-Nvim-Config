@@ -43,6 +43,9 @@ return {
                 position = "right"
             },
         },
+        suggestion = {
+            enabled = false,
+        },
         nes       = {
             enabled = false,
             keymap = {

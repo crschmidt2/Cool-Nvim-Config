@@ -1,4 +1,4 @@
-local utils = require("lib.utils")
+-- local utils = require("lib.utils")
 
 return {
     {
@@ -32,7 +32,10 @@ return {
                     floating = false,
                     start_insert = false,
                 }
-            }
+            },
+            prompt_logger = {
+                enabled = false
+            },
 
         },
         dependencies = {
