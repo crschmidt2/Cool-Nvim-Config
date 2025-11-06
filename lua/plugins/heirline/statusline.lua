@@ -11,6 +11,7 @@ local Diagnostics = require("plugins.heirline.components.diagnostics")
 local Git = require("plugins.heirline.components.git-info")
 local MacroRec = require("plugins.heirline.components.macro-recording")
 local TerminalName = require("plugins.heirline.components.terminal-name")
+local DapStatus = require("plugins.heirline.components.dap-status")
 
 local DefaultStatusLine = {
     ViMode,
@@ -23,6 +24,8 @@ local DefaultStatusLine = {
     { Rule, condition = Git.condition },
     Diagnostics,
     { Rule, condition = Diagnostics.condition },
+    DapStatus,
+    { Rule, condition = DapStatus.condition },
     LspStatus
 }
 

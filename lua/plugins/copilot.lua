@@ -1,24 +1,24 @@
 return {
     "zbirenbaum/copilot.lua",
     lazy = true,
-    -- dependencies = {
-    --     {
-    --         "copilotlsp-nvim/copilot-lsp",
-    --         lazy = true,
-    --         init = function()
-    --             vim.g.copilot_nes_debounce = 500
-    --         end,
-    --         opts = {
-    --             nes = {
-    --                 enabled = false,
-    --                 move_count_threshold = 3,
-    --             }
-    --         },
-    --         config = function(_, opts)
-    --             require('copilot-lsp').setup(opts)
-    --         end
-    --     }
-    -- },
+    dependencies = {
+        {
+            "copilotlsp-nvim/copilot-lsp",
+            lazy = true,
+            init = function()
+                vim.g.copilot_nes_debounce = 1000
+            end,
+            opts = {
+                nes = {
+                    enabled = true,
+                    move_count_threshold = 3,
+                }
+            },
+            config = function(_, opts)
+                require('copilot-lsp').setup(opts)
+            end
+        }
+    },
     keys = {
         { '<leader>aa', '<cmd>Copilot panel toggle<CR>', desc = 'Toggle copilot panel' },
     },
@@ -47,7 +47,7 @@ return {
             enabled = false,
         },
         nes       = {
-            enabled = false,
+            enabled = true,
             keymap = {
                 accept_and_goto = "<leader>ac",
                 accept = false,
