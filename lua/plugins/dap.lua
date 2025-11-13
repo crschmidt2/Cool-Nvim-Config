@@ -52,5 +52,37 @@ return {
                 dapui.close()
             end
         end
+    },
+    -- USE ONCE NVIM DAP IMPLEMENTS TOGGLE BREAKPOINT. DAP UI USES CUSTOM LOGIC TO HANDLE TOGGLING OF BREAKPOINTS. SEE https://github.com/igorlfs/nvim-dap-view/issues/74
+    -- {
+    --     "igorlfs/nvim-dap-view",
+    --     ---@module 'dap-view'
+    --     ---@type dapview.Config
+    --     opts = {},
+    --     config = function(_, opts)
+    --         local dap = require("dap")
+    --         local dap_view = require("dap-view")
+    --
+    --         dap.listeners.before.event_terminated.dapview_config = function()
+    --             dapui.close()
+    --         end
+    --         dap.listeners.before.event_exited.dapview_config = function()
+    --             dapui.close()
+    --         end
+    --
+    --         vim.keymap.set('n', '<leader>du', function() dap_view.toggle() end, { desc = "Toggle DAP View" })
+    --         dap_view.setup(opts)
+    --     end
+    -- },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-treesitter/nvim-treesitter"
+        },
+        opts = {},
+        config = function(_, opts)
+            require("nvim-dap-virtual-text").setup(opts)
+        end
     }
 }
