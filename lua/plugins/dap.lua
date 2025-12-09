@@ -4,7 +4,7 @@ return {
         dependencies = { 'rcarriga/nvim-dap-ui' },
         keys = {
             { '<C-N>',     function() require("dap").continue() end,          desc = 'Start/continue debugging' },
-            { '<leader>d', function() require("dap").toggle_breakpoint() end, desc = 'Toggle breakpoint' },
+            { '<leader>d', desc = 'DAP toggle breakpoint' },
         },
         config = function()
             -- .NET specific setup using `easy-dotnet`
@@ -14,6 +14,7 @@ return {
             local dap = require('dap')
 
             --Keymaps
+            vim.keymap.set("n", "<leader>d", dap.toggle_breakpoint, { desc = "DAP toggle breakpoint" })
             vim.keymap.set("n", "<C-N>", dap.continue, { desc = "Start/continue debugging" })
             vim.keymap.set("n", "<C-M>", dap.step_over, { desc = "Step over" })
             vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
@@ -24,6 +25,9 @@ return {
             vim.keymap.set("n", "<leader>dt", function()
                 dap.terminate()
             end, { desc = "Terminate" })
+            vim.keymap.set("n", "<leader>dr", function()
+                dap.repl.toggle()
+            end, { desc = "DAP REPL toggle" })
         end
     },
     {

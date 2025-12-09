@@ -45,7 +45,7 @@ return {
             display_counter = false,
             display_snippet = true,
             hightlight_lines = false,
-            print_tag = "",
+            print_tag = "COOLDUDE06",
             keymaps = {
                 normal = {
                     plain_below = "<leader>lo",
