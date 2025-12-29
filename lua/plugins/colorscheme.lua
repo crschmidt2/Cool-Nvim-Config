@@ -143,5 +143,17 @@ return
         "nyoom-engineering/oxocarbon.nvim",
         lazy = true,
         priority = 999,
+        config = function()
+            --This is so heirline tabname colors look decent
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                group = aug,
+                callback = function()
+                    local cs = vim.g.colors_name
+                    if cs == "oxocarbon" then
+                        vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#525252", nocombine = true })
+                    end
+                end,
+            })
+        end
     }
 }
