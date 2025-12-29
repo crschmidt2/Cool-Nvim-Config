@@ -28,7 +28,8 @@ return
                 "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm",
                 "onedark",
                 "ayu",
-                "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave", "vscode" },
+                "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave", "nightfox", "dayfox", "dawnfox",
+                "duskfox", "nordfox", "terafox", "carbonfox", "material-deep-ocean", "moonfly", "oxocarbon", "vscode" },
             livePreview = true
         },
         config = function(_, opts)
@@ -127,4 +128,20 @@ return
         lazy = true,
         priority = 999,
     },
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = true,
+        priority = 999,
+    },
+    {
+        "marko-cerovac/material.nvim",
+        lazy = true,
+        priority = 999,
+    },
+    { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = true, priority = 999 },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        lazy = true,
+        priority = 999,
+    }
 }

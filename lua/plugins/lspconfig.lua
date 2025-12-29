@@ -25,6 +25,10 @@ return {
                     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
                     local opts = { buffer = ev.buf }
                     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+                    vim.keymap.set('n', 'gD', function ()
+                       vim.cmd('tab split')
+                       vim.lsp.buf.definition()
+                    end, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)

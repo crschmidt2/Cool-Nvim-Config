@@ -35,6 +35,7 @@ vim.opt.wrap = false
 
 --COLOR
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 --FONT
 vim.g.have_nerd_font = true

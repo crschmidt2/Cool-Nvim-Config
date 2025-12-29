@@ -1,11 +1,10 @@
 --TODO: Make this use treesitter or commenting plugin instead of hardcoding double slashes
-local function insert_below_comment(keyword)
+local function insert_comment(keyword, isBelow)
     local row = vim.api.nvim_win_get_cursor(0)[1]
-    vim.api.nvim_buf_set_lines(0, row, row, false, { "//" .. keyword .. ":" })
-end
+    if (isBelow) then
+        row = row - 1
+    end
 
-local function insert_above_comment(keyword)
-    local row = vim.api.nvim_win_get_cursor(0)[1]
     vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { "//" .. keyword .. ":" })
 end
 
@@ -25,19 +24,19 @@ return {
         require("todo-comments").setup(opts)
 
         vim.keymap.set("n", "<leader>trj", function()
-            insert_below_comment("REVIEWED")
+            insert_comment("REVIEWED", true)
         end, { desc = "Insert REVIEWED comment below" })
 
         vim.keymap.set("n", "<leader>trk", function()
-            insert_above_comment("REVIEWED")
+            insert_comment("REVIEWED", false)
         end, { desc = "Insert REVIEWED comment above" })
 
         vim.keymap.set("n", "<leader>ttj", function()
-            insert_below_comment("TESTED")
+            insert_comment("TESTED", true)
         end, { desc = "Insert TESTED comment below" })
 
         vim.keymap.set("n", "<leader>ttk", function()
-            insert_above_comment("TESTED")
+            insert_comment("TESTED", false)
         end, { desc = "Insert TESTED comment above" })
     end
 }

@@ -7,9 +7,9 @@ local TabNumber = {
     end,
     hl = function(self)
         if not self.is_active then
-            return { fg = "tabline_inactive_fg", bg = "tabline_active_bg" }
+            return { fg = "tabline_inactive_fg" }
         else
-            return "TabLineFill"
+            return { fg = "tabline_active_fg" }
         end
     end,
 }
@@ -20,9 +20,9 @@ local TabIcon = {
     end,
     hl = function(self)
         if not self.is_active then
-            return { fg = "tabline_inactive_fg", bg = "tabline_active_bg" }
+            return { fg = "tabline_inactive_fg" }
         else
-            return { fg = self.icon_color, bg = "tabline_active_bg" }
+            return { fg = self.icon_color }
         end
     end
 }
@@ -41,9 +41,9 @@ local TabName = {
     end,
     hl = function(self)
         if not self.is_active then
-            return { fg = "tabline_inactive_fg", bg = "tabline_active_bg" }
+            return { fg = "tabline_inactive_fg" }
         else
-            return "TabLineFill"
+            return { fg = "tabline_active_fg" }
         end
     end,
 }
