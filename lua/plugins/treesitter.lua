@@ -4,6 +4,7 @@ return {
     event = { "BufReadPost", "BufReadPre", "BufNewFile", "BufWritePre" },
     -- lazy = vim.fn.argc(-1) == 0,
     build = ":TSUpdate",
+    branch = "master",
     version = false,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
@@ -17,13 +18,10 @@ return {
         incremental_selection = {
             enable = true,
             keymaps = {
-                -- init_selection = "<C-space>",
-                -- node_incremental = "<C-space>",
-                -- node_decremental = "<bs>",
-                init_selection = "gnn",
-                node_incremental = "grn",
-                scope_incremental = "grc",
-                node_decremental = "grm",
+                init_selection = "<A-o>",
+                node_incremental = "<A-o>",
+                scope_incremental = "<A-p>",
+                node_decremental = "<A-i>",
             },
         },
     },

@@ -2,7 +2,7 @@
 local function insert_comment(keyword, isBelow)
     local row = vim.api.nvim_win_get_cursor(0)[1]
     if (isBelow) then
-        row = row - 1
+        row = row + 1
     end
 
     vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { "//" .. keyword .. ":" })

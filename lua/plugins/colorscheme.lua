@@ -150,7 +150,7 @@ return
                 callback = function()
                     local cs = vim.g.colors_name
                     if cs == "oxocarbon" then
-                        vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#525252", nocombine = true })
+                        vim.api.nvim_set_hl(0, "Conceal", { fg = "#525252", nocombine = true })
                     end
                 end,
             })
