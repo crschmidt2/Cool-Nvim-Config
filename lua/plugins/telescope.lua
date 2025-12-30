@@ -1,6 +1,6 @@
 return {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
     lazy = true,
     cmd = "Telescope",
     keys = {
@@ -21,6 +21,11 @@ return {
             mappings = {
                 n = {},
                 i = {}
+            },
+            extensions = {
+                ["ui-select"] = {
+                    require("telescope.themes").get_dropdown {}
+                }
             }
         }
     },
@@ -44,6 +49,8 @@ return {
         opts.defaults.mappings.n = commonMappings
         opts.defaults.mappings.i = commonMappings
 
-        require('telescope').setup(opts)
+        require("telescope").setup(opts)
+
+        require("telescope").load_extension("ui-select")
     end
 }

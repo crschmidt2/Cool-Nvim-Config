@@ -3,9 +3,7 @@
 return {
     {
         "yetone/avante.nvim",
-        -- enabled = function()
-        --     return not utils.is_on_windows()
-        -- end,
+        enabled = false,
         build = vim.fn.has("win32") ~= 0
             and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
             or "make",
@@ -48,5 +46,26 @@ return {
             "zbirenbaum/copilot.lua",
             'MeanderingProgrammer/render-markdown.nvim'
         },
-    }
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        cond = true,
+        keys = {
+            { '<leader>as', '<cmd>CopilotChatToggle<CR>', desc = 'Open copilot chat window' },
+            { '<leader>ar', '<cmd>CopilotChatReset<CR>', desc = 'Reset copilot chat window' },
+        },
+        dependencies = {
+            { "nvim-lua/plenary.nvim",        branch = "master" },
+            { "nvim-telescope/telescope.nvim" }
+        },
+        opts = {
+            model = 'gpt-4o',
+            window = { width = 80 },
+            --This was hard af to find (had to look at commits), so don't delete unless necessary lol
+            mappings = { reset = "" },
+        },
+        config = function(_, opts)
+            require("CopilotChat").setup(opts)
+        end
+    },
 }

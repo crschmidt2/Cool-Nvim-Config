@@ -1,9 +1,9 @@
 return {
     {
         'mfussenegger/nvim-dap',
-        dependencies = { 'rcarriga/nvim-dap-ui' },
+        dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' },
         keys = {
-            { '<C-N>',     function() require("dap").continue() end,          desc = 'Start/continue debugging' },
+            { '<C-N>',     function() require("dap").continue() end, desc = 'Start/continue debugging' },
             { '<leader>d', desc = 'DAP toggle breakpoint' },
         },
         config = function()
@@ -80,8 +80,8 @@ return {
     -- },
     {
         "theHamsta/nvim-dap-virtual-text",
+        lazy = true,
         dependencies = {
-            "mfussenegger/nvim-dap",
             "nvim-treesitter/nvim-treesitter"
         },
         opts = {},
