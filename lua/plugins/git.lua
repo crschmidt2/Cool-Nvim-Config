@@ -9,6 +9,7 @@ return {
         local o = { buffer = bufnr }
 
         vim.keymap.set('n', '<leader>gh', gs.preview_hunk, o)
+        vim.keymap.set('n', '<leader>gr', gs.reset_hunk, o)
       end,
       signs                        = {
         add          = { text = '' },
