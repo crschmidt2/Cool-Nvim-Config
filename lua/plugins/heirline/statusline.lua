@@ -62,7 +62,7 @@ local TerminalStatusLine = {
 return {
     condition = function()
         return not conditions.buffer_matches({
-            buftype = { 'nofile', 'quickfix' } }
+            buftype = { 'nofile', 'quickfix', 'prompt' } }
         )
     end,
     hl = function()

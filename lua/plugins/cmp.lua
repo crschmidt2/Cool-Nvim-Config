@@ -4,6 +4,13 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "onsails/lspkind.nvim" },
+        opts = function(_, opts)
+            opts.sources = opts.sources or {}
+            table.insert(opts.sources, {
+                name = "lazydev",
+                group_index = 0,
+            })
+        end,
         config = function()
             local cmp = require 'cmp'
             cmp.setup({
@@ -17,14 +24,14 @@ return {
                     documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ['<Tab>'] = function(fallback)
+                    ['<C-j>'] = function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
                         else
                             fallback()
                         end
                     end,
-                    ['<S-Tab>'] = function(fallback)
+                    ['<C-k>'] = function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
                         else
@@ -89,15 +96,6 @@ return {
                 'confirm_done',
                 cmp_autopairs.on_confirm_done({
                     filetypes = {
-                        ["*"] = {
-                            ["("] = {
-                                kind = {
-                                    cmp.lsp.CompletionItemKind.Function,
-                                    cmp.lsp.CompletionItemKind.Method,
-                                },
-                                handler = handlers["*"]
-                            }
-                        },
                         ["vue"] = {
                             ["("] = {
                                 kind = {
@@ -128,6 +126,15 @@ return {
                                     end
 
                                     handlers["*"](char, item, bufnr, rules)
+                                end
+                            }
+                        },
+                        ["ps1"] = {
+                            ["("] = {
+                                kind = {
+                                    cmp.lsp.CompletionItemKind.Function,
+                                },
+                                handler = function()
                                 end
                             }
                         }

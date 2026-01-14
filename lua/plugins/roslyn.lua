@@ -3,13 +3,34 @@
 -- local roslyn_path = vim.fn.stdpath("data") ..
 --     "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
 
+local function insert_summary_comment(isBelow)
+    local target_comment_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+    if (isBelow) then
+        target_comment_row = target_comment_row + 1
+    end
+
+    local lines = { "/// <summary>", "/// ", "/// </summary>" }
+    vim.api.nvim_buf_set_lines(0, target_comment_row, target_comment_row, false, lines)
+    vim.lsp.buf.format()
+
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    local target_row
+    if (isBelow) then
+        target_row = row + 2
+    else
+        target_row = row - 2
+    end
+    vim.api.nvim_win_set_cursor(0, { target_row, vim.v.maxcol })
+    vim.api.nvim_input("a")
+end
+
 return {
     {
         "seblj/roslyn.nvim",
-        ft = { "cs", "razor" },
-        cmd = { "Roslyn" },
-        dependencies = {
-        },
+        --Lazy loading seems to prevent lsp from watching new files correctly
+        -- ft = { "cs", "razor" },
+        -- cmd = { "Roslyn" },
         init = function()
             vim.filetype.add {
                 extension = {
@@ -20,7 +41,7 @@ return {
         end,
         opts = {
             silent = false,
-            filewatching = "auto"
+            filewatching = "roslyn"
         },
         config = function(_, opts)
             vim.lsp.config("roslyn", {
@@ -44,6 +65,22 @@ return {
                         dotnet_enable_references_code_lens = true,
                     },
                 },
+            })
+
+
+            vim.api.nvim_create_autocmd({ "FileType" }, {
+                callback = function()
+                    if vim.opt.filetype:get() == 'cs' then
+                        vim.keymap.set("n", "<leader>tsk", function()
+                            insert_summary_comment(false)
+                        end, { desc = "Create summary comment above cursor" })
+
+
+                        vim.keymap.set("n", "<leader>tsj", function()
+                            insert_summary_comment(true)
+                        end, { desc = "Create summary comment below cursor" })
+                    end
+                end
             })
 
             require('roslyn').setup(opts)

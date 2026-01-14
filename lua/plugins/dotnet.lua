@@ -4,8 +4,8 @@
 --jq
 local utils = require('lib.utils')
 local netcoredbg_path = utils.get_mason_bin_file_path('netcoredbg')
-local roslyn_path = vim.fn.stdpath("data") ..
-    "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
+-- local roslyn_path = vim.fn.stdpath("data") ..
+--     "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
 
 return {
     {
@@ -13,6 +13,7 @@ return {
             "GustavEikaas/easy-dotnet.nvim",
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
             ft = { "cs", "sln", "csproj" },
+            cmd = {"Dotnet new", "Dotnet createfile"},
             opts = {
                 lsp = {
                     enabled = false,

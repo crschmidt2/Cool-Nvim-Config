@@ -30,4 +30,21 @@ M.is_on_windows = function()
     return false
 end
 
+M.place_at_end_of_line = function(input_string)
+    local original_cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+
+    vim.api.nvim_command("norm! A");
+    local end_of_line_cursor_pos = vim.api.nvim_win_get_cursor(0)
+    local row, col = end_of_line_cursor_pos[1], end_of_line_cursor_pos[2]
+
+    if vim.api.nvim_get_current_line() == "" then
+        col = col - 1
+    end
+
+    vim.api.nvim_buf_set_text(0, row - 1, col + 1, row - 1, col + 1, { input_string })
+
+    vim.api.nvim_win_set_cursor(0, original_cursor_pos);
+end
+
 return M

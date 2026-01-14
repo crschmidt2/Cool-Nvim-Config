@@ -1,3 +1,5 @@
+local utils = require("lib.utils")
+
 --LEADER
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -51,3 +53,28 @@ vim.keymap.set('t', '<C-k>', function() termWinCmd('k') end)
 vim.keymap.set('t', '<C-l>', function() termWinCmd('l') end)
 
 vim.keymap.set('n', '<leader>y', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+--DIAGNOSTICS
+vim.keymap.set("n", "<leader>dy", function()
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+
+    vim.fn.setreg('+', {}, 'V')
+
+    for _, diagnostic in ipairs(diagnostics) do
+        vim.fn.setreg(
+            '+',
+            vim.fn.getreg('+') .. diagnostic["message"],
+            'V'
+        )
+    end
+end, { desc = "Copy current line diagnostics" })
+
+--SEMICOLONS
+vim.keymap.set({ 'n', 'i' }, '<A-;>', function()
+    utils.place_at_end_of_line(';')
+end, { desc = "Place semicolon at end of line" })
+
+vim.keymap.set({ 'n', 'i' }, '<A-,>', function()
+    utils.place_at_end_of_line(',')
+end, { desc = "Place comma at end of line" })
