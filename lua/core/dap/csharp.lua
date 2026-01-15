@@ -1,22 +1,24 @@
-local dap = require('dap')
-local utils = require('lib.utils')
+--NOTE: Disabled this config in favor of easy-dotnet.nvim. I will revert to this if issues come about.
 
-local function get_net_core_bd_path()
-    --BIG HACK COMING UP
-    local osName = vim.loop.os_uname().sysname
-
-    if osName == 'Windows_NT' then
-        local net_core_bd_path = vim.fn.stdpath('data') ..
-            '\\mason\\' .. 'packages\\netcoredbg\\netcoredbg\\netcoredbg.exe'
-        return net_core_bd_path
-    end
-
-    local net_core_bd_path = utils.get_mason_bin_file_path('netcoredbg')
-    return net_core_bd_path
-end
-
--- dap.adapters.coreclr = {
---     type = 'executable',
---     command = get_net_core_bd_path(),
---     args = { '--interpreter=vscode' }
--- }
+-- local dap = require('dap')
+-- local utils = require('lib.utils')
+--
+-- local function get_net_core_bd_path()
+--     --BIG HACK COMING UP
+--     local osName = vim.loop.os_uname().sysname
+--
+--     if osName == 'Windows_NT' then
+--         local net_core_bd_path = vim.fn.stdpath('data') ..
+--             '\\mason\\' .. 'packages\\netcoredbg\\netcoredbg\\netcoredbg.exe'
+--         return net_core_bd_path
+--     end
+--
+--     local net_core_bd_path = utils.get_mason_bin_file_path('netcoredbg')
+--     return net_core_bd_path
+-- end
+--
+-- -- dap.adapters.coreclr = {
+-- --     type = 'executable',
+-- --     command = get_net_core_bd_path(),
+-- --     args = { '--interpreter=vscode' }
+-- -- }
