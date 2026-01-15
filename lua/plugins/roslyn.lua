@@ -28,7 +28,7 @@
 --     vim.api.nvim_input("a")
 -- end
 --
--- return {
+return {
 --     {
 --         "seblj/roslyn.nvim",
 --         --Lazy loading seems to prevent lsp from watching new files correctly
@@ -90,4 +90,4 @@
 --             require('roslyn').setup(opts)
 --         end
 --     }
--- }
+}
