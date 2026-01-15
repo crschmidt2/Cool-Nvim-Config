@@ -9,6 +9,7 @@ return {
                 enabled = true,
                 prompt_pos = "left"
             },
+            ---@type table<string, snacks.win.Config>
             styles = {
                 input = {
                     position = "bottom",

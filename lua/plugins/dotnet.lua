@@ -3,9 +3,27 @@
 --EasyDotNet (in $PATH probably): 'dotnet tool install -g EasyDotNet'
 --jq
 local utils = require('lib.utils')
-local netcoredbg_path = utils.get_mason_bin_file_path('netcoredbg')
--- local roslyn_path = vim.fn.stdpath("data") ..
---     "/mason/packages/roslyn/libexec/" .. "Microsoft.CodeAnalysis.LanguageServer.dll"
+local function insert_summary_comment(isBelow)
+    local target_comment_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+    if (isBelow) then
+        target_comment_row = target_comment_row + 1
+    end
+
+    local lines = { "/// <summary>", "/// ", "/// </summary>" }
+    vim.api.nvim_buf_set_lines(0, target_comment_row, target_comment_row, false, lines)
+    vim.lsp.buf.format()
+
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    local target_row
+    if (isBelow) then
+        target_row = row + 2
+    else
+        target_row = row - 2
+    end
+    vim.api.nvim_win_set_cursor(0, { target_row, vim.v.maxcol })
+    vim.api.nvim_input("a")
+end
 
 return {
     {
@@ -13,23 +31,32 @@ return {
             "GustavEikaas/easy-dotnet.nvim",
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
             ft = { "cs", "sln", "csproj" },
-            cmd = {"Dotnet new", "Dotnet createfile"},
+            cmd = { "Dotnet new", "Dotnet createfile" },
             opts = {
-                lsp = {
-                    enabled = false,
-                    -- roslynator_enabled = false,
-                    -- bin_path = roslyn_path,
-                    -- analyzer_assemblies = {},
-                },
-                debugger = {
-                    bin_path = netcoredbg_path,
-                    -- mappings = {
-                    --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
-                    -- },
-                }
+                -- lsp = {
+                --     enabled = false,
+                --     -- roslynator_enabled = false,
+                --     -- bin_path = roslyn_path,
+                --     -- analyzer_assemblies = {},
+                -- },
+                -- debugger = {
+                --     bin_path = netcoredbg_path,
+                --     -- mappings = {
+                --     --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+                --     -- },
+                -- }
             },
             config = function(_, opts)
                 require("easy-dotnet").setup(opts)
+
+                vim.keymap.set("n", "<leader>tsk", function()
+                    insert_summary_comment(false)
+                end, { desc = "Create summary comment above cursor" })
+
+
+                vim.keymap.set("n", "<leader>tsj", function()
+                    insert_summary_comment(true)
+                end, { desc = "Create summary comment below cursor" })
             end
         }
     }
