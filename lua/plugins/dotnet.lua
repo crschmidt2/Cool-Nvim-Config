@@ -15,18 +15,18 @@ return {
             ft = { "cs", "sln", "csproj" },
             cmd = {"Dotnet new", "Dotnet createfile"},
             opts = {
-                lsp = {
-                    enabled = false,
-                    -- roslynator_enabled = false,
-                    -- bin_path = roslyn_path,
-                    -- analyzer_assemblies = {},
-                },
-                debugger = {
-                    bin_path = netcoredbg_path,
-                    -- mappings = {
-                    --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
-                    -- },
-                }
+                -- lsp = {
+                --     enabled = false,
+                --     -- roslynator_enabled = false,
+                --     -- bin_path = roslyn_path,
+                --     -- analyzer_assemblies = {},
+                -- },
+                -- debugger = {
+                --     bin_path = netcoredbg_path,
+                --     -- mappings = {
+                --     --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+                --     -- },
+                -- }
             },
             config = function(_, opts)
                 require("easy-dotnet").setup(opts)

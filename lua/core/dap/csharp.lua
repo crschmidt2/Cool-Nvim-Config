@@ -15,8 +15,8 @@ local function get_net_core_bd_path()
     return net_core_bd_path
 end
 
-dap.adapters.coreclr = {
-    type = 'executable',
-    command = get_net_core_bd_path(),
-    args = { '--interpreter=vscode' }
-}
+-- dap.adapters.coreclr = {
+--     type = 'executable',
+--     command = get_net_core_bd_path(),
+--     args = { '--interpreter=vscode' }
+-- }
