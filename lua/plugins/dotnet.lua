@@ -49,14 +49,15 @@ return {
             config = function(_, opts)
                 require("easy-dotnet").setup(opts)
 
-                vim.keymap.set("n", "<leader>tsk", function()
-                    insert_summary_comment(false)
-                end, { desc = "Create summary comment above cursor" })
-
-
-                vim.keymap.set("n", "<leader>tsj", function()
-                    insert_summary_comment(true)
-                end, { desc = "Create summary comment below cursor" })
+                --NOTE: These should be handled by the LSP Code Actions when typing a triple slash comment above a method.
+                -- vim.keymap.set("n", "<leader>tsk", function()
+                --     insert_summary_comment(false)
+                -- end, { desc = "Create summary comment above cursor" })
+                --
+                --
+                -- vim.keymap.set("n", "<leader>tsj", function()
+                --     insert_summary_comment(true)
+                -- end, { desc = "Create summary comment below cursor" })
             end
         }
     }
