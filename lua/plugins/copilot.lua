@@ -1,11 +1,13 @@
 return {
     {
         "zbirenbaum/copilot.lua",
-        lazy = true,
+        enabled = false,
+        event = "VeryLazy",
         dependencies = {
             {
                 "copilotlsp-nvim/copilot-lsp",
                 lazy = true,
+                enabled = false,
                 init = function()
                     vim.g.copilot_nes_debounce = 1000
                 end,
@@ -19,9 +21,6 @@ return {
                     require('copilot-lsp').setup(opts)
                 end
             }
-        },
-        keys = {
-            { '<leader>aa', '<cmd>Copilot panel toggle<CR>', desc = 'Toggle copilot panel' },
         },
         opts = {
             filetypes  = {
@@ -48,7 +47,7 @@ return {
                 enabled = false,
             },
             nes        = {
-                enabled = true,
+                enabled = false,
                 keymap = {
                     accept_and_goto = "<leader>ac",
                     accept = false,
@@ -59,26 +58,5 @@ return {
         config = function(_, opts)
             require("copilot").setup(opts)
         end,
-    },
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        cond = true,
-        keys = {
-            { '<leader>as', '<cmd>CopilotChatToggle<CR>', desc = 'Open copilot chat window', mode = { "n", "v" } },
-            { '<leader>ar', '<cmd>CopilotChatReset<CR>',  desc = 'Reset copilot chat window' },
-        },
-        dependencies = {
-            { "nvim-lua/plenary.nvim",        branch = "master" },
-            { "nvim-telescope/telescope.nvim" }
-        },
-        opts = {
-            model = 'gpt-4o',
-            window = { width = 80 },
-            --This was hard af to find (had to look at commits), so don't delete unless necessary lol
-            mappings = { reset = "" },
-        },
-        config = function(_, opts)
-            require("CopilotChat").setup(opts)
-        end
-    },
+    }
 }

@@ -2,30 +2,31 @@
 --Requirements:
 --EasyDotNet (in $PATH probably): 'dotnet tool install -g EasyDotNet'
 --jq
-local utils = require('lib.utils')
-local function insert_summary_comment(isBelow)
-    local target_comment_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+-- local utils = require('lib.utils')
+-- local function insert_summary_comment(isBelow)
+--     local target_comment_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+--
+--     if (isBelow) then
+--         target_comment_row = target_comment_row + 1
+--     end
+--
+--     local lines = { "/// <summary>", "/// ", "/// </summary>" }
+--     vim.api.nvim_buf_set_lines(0, target_comment_row, target_comment_row, false, lines)
+--     vim.lsp.buf.format()
+--
+--     local row = vim.api.nvim_win_get_cursor(0)[1]
+--     local target_row
+--     if (isBelow) then
+--         target_row = row + 2
+--     else
+--         target_row = row - 2
+--     end
+--     vim.api.nvim_win_set_cursor(0, { target_row, vim.v.maxcol })
+--     vim.api.nvim_input("a")
+-- end
 
-    if (isBelow) then
-        target_comment_row = target_comment_row + 1
-    end
-
-    local lines = { "/// <summary>", "/// ", "/// </summary>" }
-    vim.api.nvim_buf_set_lines(0, target_comment_row, target_comment_row, false, lines)
-    vim.lsp.buf.format()
-
-    local row = vim.api.nvim_win_get_cursor(0)[1]
-    local target_row
-    if (isBelow) then
-        target_row = row + 2
-    else
-        target_row = row - 2
-    end
-    vim.api.nvim_win_set_cursor(0, { target_row, vim.v.maxcol })
-    vim.api.nvim_input("a")
-end
-
-return {
+return
+{
     {
         {
             "GustavEikaas/easy-dotnet.nvim",

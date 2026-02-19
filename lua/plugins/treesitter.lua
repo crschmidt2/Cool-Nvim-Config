@@ -48,7 +48,7 @@ return { {
             "nvim-treesitter/nvim-treesitter"
         },
         event = { "BufReadPost", "BufReadPre", "BufNewFile", "BufWritePre" },
-        config = function(_, opts)
+        config = function()
             require 'nvim-treesitter.configs'.setup {
                 textobjects = {
                     select = {
