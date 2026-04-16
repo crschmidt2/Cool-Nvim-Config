@@ -30,6 +30,8 @@ return {
                     end, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
+                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+                    vim.keymap.set('n', 'gl', vim.lsp.codelens.run, opts)
                     vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
                     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>f', function()
