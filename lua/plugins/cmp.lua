@@ -1,3 +1,59 @@
+--Configures cmp to have completion for agents in ~/.copilot/agents
+local function agent_autocomplete()
+    local cmp = require 'cmp'
+
+    local agent_source = {}
+    agent_source.new = function()
+        return setmetatable({}, { __index = agent_source })
+    end
+    agent_source.is_available = function()
+        return vim.bo.filetype == 'AgenticInput'
+    end
+    agent_source.get_trigger_characters = function()
+        return { ' ' }
+    end
+    agent_source.complete = function(_, request, callback)
+        local line = request.context.cursor_before_line
+        if not line:match('^/agent%s') then
+            callback({ items = {}, isIncomplete = false })
+            return
+        end
+        local agents_dir = vim.fn.expand('~/.copilot/agents')
+        local files = vim.fn.glob(agents_dir .. '/*.agent.md', false, true)
+        local items = {}
+        for _, f in ipairs(files) do
+            local name = vim.fn.fnamemodify(f, ':t'):gsub('%.agent%.md$', '')
+            table.insert(items, {
+                label = name,
+                kind = cmp.lsp.CompletionItemKind.Text,
+                insertText = name,
+                data = { filepath = f },
+            })
+        end
+        callback({ items = items, isIncomplete = false })
+    end
+    agent_source.resolve = function(_, completion_item, callback)
+        local filepath = completion_item.data and completion_item.data.filepath
+        if filepath then
+            local lines = {}
+            for line in io.lines(filepath) do
+                table.insert(lines, line)
+                if #lines >= 10 then break end
+            end
+            completion_item.documentation = {
+                kind = 'markdown',
+                value = table.concat(lines, '\n'),
+            }
+        end
+        callback(completion_item)
+    end
+    cmp.register_source('agentic_agents', agent_source)
+
+    cmp.setup.filetype('AgenticInput', {
+        sources = { { name = 'agentic_agents' } }
+    })
+end
+
 return {
     --CMP: Language Server Completion Integration
     {
@@ -87,6 +143,8 @@ return {
                     { name = 'cmdline' }
                 })
             })
+
+            agent_autocomplete()
 
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
             local handlers = require('nvim-autopairs.completion.handlers')

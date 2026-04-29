@@ -1,13 +1,17 @@
 return {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+    cond = true,
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        -- "nvim-telescope/telescope-ui-select.nvim"
+    },
     lazy = true,
     cmd = "Telescope",
     keys = {
         { '<leader>he', '<cmd>Telescope help_tags theme=get_ivy<CR>',                     desc = 'Telescope search help tags' },
         { '<leader>ff', '<cmd>Telescope find_files<CR>',                                  desc = 'Telescope find files' },
         { '<leader>fg', '<cmd>Telescope live_grep<CR>',                                   desc = 'Telescope find in files' },
-        { '<leader>fd', '<cmd>Telescope diagnostics<CR>',                                  desc = 'Telescope find diagnostics' },
+        { '<leader>fd', '<cmd>Telescope diagnostics<CR>',                                 desc = 'Telescope find diagnostics' },
         { '<leader>gf', '<cmd>Telescope git_files<CR>',                                   desc = 'Telescope find git files' },
         { '<leader>fh', '<cmd>Telescope highlights theme=get_ivy<CR>',                    desc = 'Telescope find highlights' },
         { '<leader>bf', '<cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>',     desc = 'Telescope find in current buffer' },
@@ -22,11 +26,11 @@ return {
                 n = {},
                 i = {}
             },
-            extensions = {
-                ["ui-select"] = {
-                    require("telescope.themes").get_dropdown {}
-                }
-            }
+            -- extensions = {
+            --     ["ui-select"] = {
+            --         require("telescope.themes").get_dropdown {}
+            --     }
+            -- }
         }
     },
     config = function(_, opts)
@@ -51,6 +55,6 @@ return {
 
         require("telescope").setup(opts)
 
-        require("telescope").load_extension("ui-select")
+        -- require("telescope").load_extension("ui-select")
     end
 }
