@@ -80,10 +80,20 @@ return
         "Shatur/neovim-ayu",
         lazy = true,
         priority = 999,
-        opts = {
-            mirage = true,
-        },
-        config = function(_, opts)
+        config = function()
+            local mirage = true
+
+            local colors = require('ayu.colors')
+            colors.generate(mirage)
+
+            local opts = {
+                mirage = mirage,
+                overrides = {
+                    Comment = { fg = colors.special },
+                    LineNr = { fg = colors.comment }
+                }
+            }
+
             require("ayu").setup(opts)
         end
     },

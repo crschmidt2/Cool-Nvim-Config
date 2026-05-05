@@ -5,7 +5,15 @@ return {
         --- @type agentic.PartialUserConfig
         opts         = {
             provider = "copilot-acp",
+            file_picker = { enabled = false }, -- use nvim-cmp instead
         },
+        config       = function(_, opts)
+            -- Disable built-in slash command completion (no config flag exists);
+            -- this prevents completefunc + <C-x><C-u> from competing with nvim-cmp
+            local SlashCommands = require("agentic.acp.slash_commands")
+            SlashCommands.setup_completion = function(_) end
+            require("agentic").setup(opts)
+        end,
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },

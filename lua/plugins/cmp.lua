@@ -48,9 +48,67 @@ local function agent_autocomplete()
         callback(completion_item)
     end
     cmp.register_source('agentic_agents', agent_source)
+end
+
+local function skill_autocomplete()
+    local cmp = require 'cmp'
+
+    local skill_source = {}
+    skill_source.new = function()
+        return setmetatable({}, { __index = skill_source })
+    end
+    skill_source.is_available = function()
+        return vim.bo.filetype == 'AgenticInput'
+    end
+    skill_source.get_trigger_characters = function()
+        return { '/' }
+    end
+    skill_source.complete = function(_, request, callback)
+        local line = request.context.cursor_before_line
+        if not line:match('^/%S*$') then
+            callback({ items = {}, isIncomplete = false })
+            return
+        end
+        local skills_dir = vim.fn.expand('~/.copilot/skills')
+        local entries = vim.fn.glob(skills_dir .. '/*', false, true)
+        local items = {}
+        for _, d in ipairs(entries) do
+            if vim.fn.isdirectory(d) == 1 then
+                local name = vim.fn.fnamemodify(d, ':t')
+                table.insert(items, {
+                    label = name,
+                    kind = cmp.lsp.CompletionItemKind.Module,
+                    insertText = name,
+                    data = { dirpath = d },
+                })
+            end
+        end
+        callback({ items = items, isIncomplete = false })
+    end
+    skill_source.resolve = function(_, completion_item, callback)
+        local dirpath = completion_item.data and completion_item.data.dirpath
+        if dirpath then
+            local skill_md = dirpath .. '/SKILL.md'
+            local f = io.open(skill_md, 'r')
+            if f then
+                local lines = {}
+                for ln in f:lines() do
+                    table.insert(lines, ln)
+                    if #lines >= 10 then break end
+                end
+                f:close()
+                completion_item.documentation = {
+                    kind = 'markdown',
+                    value = table.concat(lines, '\n'),
+                }
+            end
+        end
+        callback(completion_item)
+    end
+    cmp.register_source('agentic_skills', skill_source)
 
     cmp.setup.filetype('AgenticInput', {
-        sources = { { name = 'agentic_agents' } }
+        sources = { { name = 'agentic_agents' }, { name = 'agentic_skills' } }
     })
 end
 
@@ -59,7 +117,7 @@ return {
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
-        dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "onsails/lspkind.nvim" },
+        dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "onsails/lspkind.nvim", "hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lua" },
         opts = function(_, opts)
             opts.sources = opts.sources or {}
             table.insert(opts.sources, {
@@ -99,9 +157,10 @@ return {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
-                    -- { name = 'nvim_lsp_signature_help' },
                     { name = 'buffer' },
-                    { name = 'easy-dotnet' }
+                    { name = 'easy-dotnet' },
+                    { name = 'path' },
+                    { name = 'nvim_lua' }
                 }),
                 formatting = {
                     format = require('lspkind').cmp_format({
@@ -145,6 +204,7 @@ return {
             })
 
             agent_autocomplete()
+            skill_autocomplete()
 
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
             local handlers = require('nvim-autopairs.completion.handlers')
