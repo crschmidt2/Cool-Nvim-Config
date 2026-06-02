@@ -19,8 +19,8 @@ return {
         "mason-org/mason-lspconfig.nvim",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
+            ensure_installed = { "lua_ls", "rust_analyzer", "html_lsp", "css_lsp", "ts_ls", "vue_ls", "js_debug_adapter", "netcoredbg", "clangd" },
             automatic_enable = {
-                ensure_installed = { "lua_ls", "rust_analyzer", "html_lsp", "css_lsp", "ts_ls", "vue_ls", "js_debug_adapter", "netcoredbg" },
                 exclude = {
                     "lua_ls",
                     "ts_ls",

@@ -45,7 +45,7 @@ return {
         opts = {
             file_types = { "markdown", "Avante", "copilot-chat", "codecompanion", "AgenticChat" },
         },
-        ft = { "markdown", "Avante" },
+        ft = { "markdown", "Avante", "AgenticChat" },
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     },
     {
