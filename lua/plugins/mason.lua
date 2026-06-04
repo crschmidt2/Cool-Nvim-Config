@@ -19,7 +19,9 @@ return {
         "mason-org/mason-lspconfig.nvim",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
-            ensure_installed = { "lua_ls", "rust_analyzer", "html_lsp", "css_lsp", "ts_ls", "vue_ls", "js_debug_adapter", "netcoredbg", "clangd" },
+            -- It says some of these aren't actual LSP names
+            -- ensure_installed = { "lua_ls", "rust_analyzer", "html_lsp", "css_lsp", "ts_ls", "vue_ls", "js_debug_adapter", "netcoredbg", "clangd" },
+            ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "vue_ls", "clangd" },
             automatic_enable = {
                 exclude = {
                     "lua_ls",
