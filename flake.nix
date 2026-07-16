@@ -13,15 +13,21 @@
 
 	outputs = inputs@{ flake-parts, ... }: 
 		flake-parts.lib.mkFlake {inherit inputs;} {
+			imports = [ inputs.flake-parts.flakeModules.easyOverlay ];
 
-			perSystem = {self, inputs, pkgs, system, ...}: {
-				packages.neovim = inputs.wrappers.lib.wrapPackage {
-					inherit pkgs;
-					package = pkgs.neovim;
+			systems = [ "x86_64-linux" "aarch64-linux" ]; 
+
+			#Final does sort of the same thing as pkgs. It is the final packages set after overlays are applied, so it lets you add or modify packages that are a part of that
+			#Here it is adding cool-neovim as a package.
+			perSystem = { final, config, ...}: {
+				overlayAttrs = { inherit (config.packages) cool-neovim; };
+
+				packages.cool-neovim = inputs.wrappers.lib.wrapPackage {
+					pkgs = final;
+					package = final.neovim;
 				};
 
-				packages.default = self.nixosModules.${system}.neovim;
+				packages.default = config.packages.cool-neovim;
 			};
-
 		};
 }
