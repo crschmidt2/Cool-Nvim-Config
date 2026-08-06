@@ -1,5 +1,6 @@
 ---@type vim.lsp.Config
 return {
+    on_attach = function() end,
     settings = {
         ['csharp|inlay_hints'] = {
             csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -17,7 +18,7 @@ return {
             dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
         },
         ['csharp|code_lens'] = {
-            dotnet_enable_references_code_lens = true,
+            dotnet_enable_references_code_lens = false,
         },
     },
 }

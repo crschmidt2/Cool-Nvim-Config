@@ -26,11 +26,14 @@ return
         opts = {
             themes = {
                 "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm",
-                "onedark",
+                "onedark", "onenord",
                 "ayu",
                 "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave", "nightfox", "dayfox", "dawnfox",
                 "duskfox", "nordfox", "terafox", "carbonfox", "material-deep-ocean", "moonfly", "oxocarbon", "vscode" },
-            livePreview = true
+            livePreview = true,
+            --For some reason  a deprecated setting message for this settings shows every time neovim starts ONLY ON WINDOWS.
+            --Until that bug is fixed, this is a workaround.
+            themeConfigFile = "c:\\v:null",
         },
         config = function(_, opts)
             vim.keymap.set('n', '<leader>cs', '<cmd>Themery<CR>')
@@ -73,6 +76,14 @@ return
                 ["TabLineFill"] = { fg = '$tabFocusedText' },
                 ["TabLine"] = { fg = '$tabUnfocusedText' },
             },
+        },
+        config = true,
+    },
+    {
+        "rmehri01/onenord.nvim",
+        lazy = true,
+        priority = 999,
+        opts = {
         },
         config = true,
     },

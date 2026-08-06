@@ -15,12 +15,13 @@ local my_on_attach = function(bufnr)
         require("easy-dotnet").create_new_item(path)
     end, opts('Create file from dotnet template'))
 
-    vim.keymap.set("n", "?",     api.tree.toggle_help,                  opts("Help"))
+    vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
 
 return {
     {
         "nvim-tree/nvim-tree.lua",
+        cond = false,
         keys = {
             { "<C-e>", "<cmd>NvimTreeToggle<CR>", desc = "Open file tree" },
         },

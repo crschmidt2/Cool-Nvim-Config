@@ -4,7 +4,7 @@ return {
         cond         = true,
         --- @type agentic.PartialUserConfig
         opts         = {
-            provider = "copilot-acp",
+            provider = "claude-agent-acp",
             file_picker = { enabled = false }, -- use nvim-cmp instead
         },
         config       = function(_, opts)

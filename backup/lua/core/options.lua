@@ -44,8 +44,9 @@ vim.g.have_nerd_font = true
 vim.opt.winborder = 'rounded'
 
 --FILE EXPLORER
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+--TODO: Readd this (maybe...) after getting file tree plugin
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
 
 --SEARCHING
 vim.opt.ignorecase = true
@@ -82,10 +83,10 @@ vim.opt.sessionoptions:append({ "localoptions" })
 vim.diagnostic.config({
     signs = {
         text = {
-            [vim.diagnostic.severity.INFO] = ' ',
-            [vim.diagnostic.severity.HINT] = ' ',
-            [vim.diagnostic.severity.WARN] = ' ',
-            [vim.diagnostic.severity.ERROR] = ' ',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.ERROR] = '',
         },
         texthl = {
             [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
@@ -100,8 +101,6 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.ERROR] = ''
         }
     },
-    virtual_text = false,
-    --Only underline real problems. Analyzer suggestions (Roslynator RCS*, Roslyn IDE*)
-    --arrive as INFO/HINT and still show in signs + tiny-inline-diagnostic.
-    underline = { severity = { min = vim.diagnostic.severity.WARN } }
+    virtual_text = false
 })
+
