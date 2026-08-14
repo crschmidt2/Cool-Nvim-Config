@@ -55,6 +55,15 @@ vim.keymap.set('t', '<C-l>', function() termWinCmd('l') end)
 vim.keymap.set('n', '<leader>y', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 --DIAGNOSTICS
+-- the default ]d/[d are remapped to the diff jumps below
+vim.keymap.set('n', ']e', function()
+    vim.diagnostic.jump { count = vim.v.count1 }
+end, { desc = 'Jump to next diagnostic' })
+
+vim.keymap.set('n', '[e', function()
+    vim.diagnostic.jump { count = -vim.v.count1 }
+end, { desc = 'Jump to previous diagnostic' })
+
 vim.keymap.set("n", "<leader>yd", function()
     local line = vim.api.nvim_win_get_cursor(0)[1]
     local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
@@ -69,6 +78,17 @@ vim.keymap.set("n", "<leader>yd", function()
         )
     end
 end, { desc = "Copy current line diagnostics" })
+
+vim.keymap.set('n', '<leader>td', function()
+  local enabled = vim.diagnostic.is_enabled()
+  vim.diagnostic.enable(not enabled)
+  print("Diagnostics " .. (not enabled and "Enabled" or "Disabled"))
+end, { desc = "Toggle diagnostics" })
+
+--DIFF JUMPS
+-- ]c/[c are taken by the treesitter @class textobject (see plugins/treesitter.lua)
+vim.keymap.set({ 'n', 'x', 'o' }, ']d', ']c', { desc = 'Jump to next diff' })
+vim.keymap.set({ 'n', 'x', 'o' }, '[d', '[c', { desc = 'Jump to previous diff' })
 
 --SEMICOLONS
 vim.keymap.set({ 'n', 'i' }, '<A-;>', function()

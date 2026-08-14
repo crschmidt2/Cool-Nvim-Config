@@ -78,7 +78,6 @@ end
 vim.opt.sessionoptions:append({ "localoptions" })
 
 --DIAGNOSTICS
-
 vim.diagnostic.config({
     signs = {
         text = {
@@ -105,3 +104,19 @@ vim.diagnostic.config({
     --arrive as INFO/HINT and still show in signs + tiny-inline-diagnostic.
     underline = { severity = { min = vim.diagnostic.severity.WARN } }
 })
+
+--DIFFS
+vim.opt.fillchars:append { diff = "`" }
+
+local function dim_diff_filler()
+    local nontext = vim.api.nvim_get_hl(0, { name = "NonText", link = false })
+    local diff = vim.api.nvim_get_hl(0, { name = "DiffDelete", link = false })
+    vim.api.nvim_set_hl(0, "DiffDelete", { fg = nontext.fg or "#4b5263", bg = diff.bg })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("DiffFiller", { clear = true }),
+    callback = dim_diff_filler,
+})
+
+dim_diff_filler()
