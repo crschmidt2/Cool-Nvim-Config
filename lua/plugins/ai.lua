@@ -5,6 +5,12 @@ return {
         --- @type agentic.PartialUserConfig
         opts         = {
             provider = "claude-agent-acp",
+            acp_providers = {
+                ["claude-agent-acp"] = {
+                    default_mode = "bypassPermissions",
+                    initial_model = "opus",
+                },
+            },
             file_picker = { enabled = false }, -- use nvim-cmp instead
         },
         config       = function(_, opts)

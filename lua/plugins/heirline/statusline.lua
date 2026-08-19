@@ -12,12 +12,14 @@ local Git = require("plugins.heirline.components.git-info")
 local MacroRec = require("plugins.heirline.components.macro-recording")
 local TerminalName = require("plugins.heirline.components.terminal-name")
 local DapStatus = require("plugins.heirline.components.dap-status")
+local Grapple = require("plugins.heirline.components.grapple")
 
 local DefaultStatusLine = {
     ViMode,
     Space,
     FileName,
     Space,
+    Grapple,
     MacroRec,
     Align,
     Git,
@@ -34,6 +36,7 @@ local EmptyFileStatusLine = {
     Space,
     FileName,
     Space,
+    Grapple,
     MacroRec,
     Align,
     Git,

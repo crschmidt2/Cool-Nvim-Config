@@ -25,6 +25,10 @@
 --     vim.api.nvim_input("a")
 -- end
 
+local utils = require('lib.utils')
+
+local html_ls_path = utils.get_mason_bin_file_path('vscode-html-language-server')
+
 return
 {
     {
@@ -34,12 +38,20 @@ return
             ft = { "cs", "sln", "csproj" },
             cmd = { "Dotnet new", "Dotnet createfile" },
             opts = {
-                -- lsp = {
-                --     enabled = false,
-                --     -- roslynator_enabled = false,
-                --     -- bin_path = roslyn_path,
-                --     -- analyzer_assemblies = {},
-                -- },
+                lsp = {
+                    --     enabled = false,
+                    --     -- roslynator_enabled = false,
+                    --     -- bin_path = roslyn_path,
+                    --     -- analyzer_assemblies = {},
+                    razor = {
+                        -- enabled = true,
+                        html = {
+                            enabled = true,
+                            -- cmd = html_ls_path, -- Uses Mason
+                            request_timeout = 5000,
+                        },
+                    },
+                },
                 -- debugger = {
                 --     bin_path = netcoredbg_path,
                 --     -- mappings = {
