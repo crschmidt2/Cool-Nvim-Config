@@ -14,29 +14,30 @@ return {
             --Rust closures
             npairs.add_rules({
                 Rule("|", "|", "rust")
-                    :with_pair(function(opts)
-                        local line = opts.line
-                        local col = opts.col
+                    :with_pair(function(options)
+                        local line = options.line
+                        local col = options.col
                         return not line:sub(col, col):match("|")
                     end)
-                    :with_move(function(opts)
-                        return opts.char == "|"
+                    :with_move(function(options)
+                        return options.char == "|"
                     end)
                     :use_key("|")
             })
         end
     },
-    -- {
-    --     'nvim-mini/mini.pairs',
-    --     version = false,
-    --     opts = {},
-    --     config = function()
-    --         require('mini.pairs').setup()
-    --     end
-    -- },
     {
         'windwp/nvim-ts-autotag',
         event = { "BufReadPre", "BufNewFile" },
-        config = true,
+        opts = {
+            per_filetype = {
+                ["razor"] = {
+                    enable_close = true
+                }
+            }
+        },
+        config = function()
+            require('nvim-ts-autotag').setup(opts)
+        end
     }
 }

@@ -61,18 +61,19 @@ vim.opt.scrolloff = 4
 vim.opt.cmdheight = 0
 vim.opt.shortmess:append('W')
 
---FIXES POWERSHELL CMD LINE (make sure pwsh is installed if using csv files)
-local osName = vim.loop.os_uname().sysname
-if osName == 'Windows_NT' then
-    vim.o.shell = 'powershell'
-
-    vim.o.shellcmdflag =
-    '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    vim.o.shellquote = ''
-    vim.o.shellxquote = ''
-end
+-- NOTE: This vim.o.shell option made EVERY background process spun up by neovim run in powershell instead of cmd, which is way slower!
+-- --FIXES POWERSHELL CMD LINE (make sure pwsh is installed if using csv files)
+-- local osName = vim.loop.os_uname().sysname
+-- if osName == 'Windows_NT' then
+--     vim.o.shell = 'powershell'
+--
+--     vim.o.shellcmdflag =
+--     '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+--     vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+--     vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+--     vim.o.shellquote = ''
+--     vim.o.shellxquote = ''
+-- end
 
 --SESSIONS
 vim.opt.sessionoptions:append({ "localoptions" })

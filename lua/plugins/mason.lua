@@ -29,12 +29,13 @@ return {
                     "vtsls",
                     "vue_ls",
                     --LSP Setup handled by roslyn.nvim
-                    "roslyn"
+                    "roslyn",
+                    "html_lsp"
                 }
             }
         },
         dependencies = {
-            "mason-org/mason.nvim",
+            -- "mason-org/mason.nvim",
             "neovim/nvim-lspconfig",
         },
         config = function(_, opts)

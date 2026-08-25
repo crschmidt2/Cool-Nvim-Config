@@ -30,6 +30,18 @@ vim.keymap.set('', '<A-=>', '<C-w>=')
 --YANKING + PASTING
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '"0p')
 
+vim.keymap.set('n', '<leader>yp', function()
+  local p = vim.fn.expand('%:p'):gsub('\\', '/')
+  vim.fn.setreg('+', p)
+  vim.notify(p)
+end, { desc = 'Yank path (unix style)' })
+
+vim.keymap.set('n', '<leader>yP', function()
+  local p = vim.fn.expand('%:p'):gsub('/', '\\')
+  vim.fn.setreg('+', p)
+  vim.notify(p)
+end, { desc = 'Yank path (windows style)' })
+
 --TOGGLE LINE NUMBERS
 vim.keymap.set('', '<leader>rn', function()
     local lineNumbers = vim.opt.relativenumber:get()

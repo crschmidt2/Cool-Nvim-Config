@@ -29,7 +29,7 @@ return
                 "onedark", "onenord",
                 "ayu",
                 "kanagawa", "kanagawa-lotus", "kanagawa-dragon", "kanagawa-wave", "nightfox", "dayfox", "dawnfox",
-                "duskfox", "nordfox", "terafox", "carbonfox", "material-deep-ocean", "moonfly", "oxocarbon", "vscode" },
+                "duskfox", "nordfox", "terafox", "carbonfox", "material-deep-ocean", "moonfly", "vscode" },
             livePreview = true,
             --For some reason  a deprecated setting message for this settings shows every time neovim starts ONLY ON WINDOWS.
             --Until that bug is fixed, this is a workaround.
@@ -160,21 +160,4 @@ return
         priority = 999,
     },
     { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = true, priority = 999 },
-    {
-        "nyoom-engineering/oxocarbon.nvim",
-        lazy = true,
-        priority = 999,
-        config = function()
-            --This is so heirline tabname colors look decent
-            vim.api.nvim_create_autocmd("ColorScheme", {
-                group = aug,
-                callback = function()
-                    local cs = vim.g.colors_name
-                    if cs == "oxocarbon" then
-                        vim.api.nvim_set_hl(0, "Conceal", { fg = "#525252", nocombine = true })
-                    end
-                end,
-            })
-        end
-    }
 }

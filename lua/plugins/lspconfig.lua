@@ -1,22 +1,21 @@
 return {
     --LSPCONFIG: Prebuilt configs for language servers
     {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            {
-                "ray-x/lsp_signature.nvim",
-                event = "InsertEnter",
-                dependencies = { 'neovim/nvim-lspconfig' },
-                opts = {
-                    bind = true,
-                    handler_opts = {
-                        border = "rounded"
-                    },
-                    hint_prefix = "",
-                },
-                config = function(_, opts) require 'lsp_signature'.setup(opts) end
-            }
+        --Top-level spec so its InsertEnter event is honored. As a dependency of
+        --lspconfig it would load with the parent on BufRead, ignoring this event.
+        "ray-x/lsp_signature.nvim",
+        event = "InsertEnter",
+        opts = {
+            bind = true,
+            handler_opts = {
+                border = "rounded"
+            },
+            hint_prefix = "",
         },
+        config = function(_, opts) require 'lsp_signature'.setup(opts) end
+    },
+    {
+        "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             vim.api.nvim_create_autocmd('LspAttach', {

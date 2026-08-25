@@ -35,7 +35,7 @@ return
         {
             "GustavEikaas/easy-dotnet.nvim",
             dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
-            ft = { "cs", "sln", "csproj" },
+            ft = { "cs", "sln", "csproj", "razor" },
             cmd = { "Dotnet new", "Dotnet createfile" },
             opts = {
                 lsp = {
@@ -44,20 +44,21 @@ return
                     --     -- bin_path = roslyn_path,
                     --     -- analyzer_assemblies = {},
                     razor = {
-                        -- enabled = true,
+                        enabled = true,
                         html = {
                             enabled = true,
-                            -- cmd = html_ls_path, -- Uses Mason
-                            request_timeout = 5000,
+                            cmd = { html_ls_path, '--stdio' }, -- Uses Mason
+                            request_timeout = 10000,
                         },
                     },
                 },
-                -- debugger = {
-                --     bin_path = netcoredbg_path,
-                --     -- mappings = {
-                --     --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
-                --     -- },
-                -- }
+                debugger = {
+                    register_dap_adapter = false,
+                    --     bin_path = netcoredbg_path,
+                    --     -- mappings = {
+                    --     --     open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+                    --     -- },
+                }
             },
             config = function(_, opts)
                 require("easy-dotnet").setup(opts)
