@@ -121,3 +121,22 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 dim_diff_filler()
+
+--FILETYPES
+vim.filetype.add({
+  extension = {
+    sln = 'sln',
+  },
+})
+
+--HIGHLIGHTING
+--Visual Studio sln
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sln",
+  callback = function()
+    -- Colorize Visual Studio keywords
+    vim.fn.matchadd("Keyword", [[\v<(Project|EndProject|Global|GlobalSection|EndGlobalSection)>]])
+    -- Colorize GUID strings
+    vim.fn.matchadd("String", [[\v\{[-A-Fa-f0-9]{36}\}]])
+  end,
+})
